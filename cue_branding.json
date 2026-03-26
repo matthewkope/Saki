@@ -1,0 +1,142 @@
+{
+    "colorScheme": "dark",
+    "fonts": [
+        {
+            "family": "Inter",
+            "role": "body"
+        }
+    ],
+    "colors": {
+        "primary": "#2AA3EF",
+        "accent": "#FF7A00",
+        "background": "#1A1B1E",
+        "textPrimary": "#1A1B1E",
+        "link": "#9E9EFF"
+    },
+    "typography": {
+        "fontFamilies": {
+            "primary": "Inter",
+            "heading": "Inter"
+        },
+        "fontStacks": {
+            "heading": [
+                "Greycliff CF",
+                "-apple-system",
+                "BlinkMacSystemFont",
+                "Segoe UI",
+                "Roboto",
+                "Helvetica",
+                "Arial",
+                "sans-serif",
+                "Apple Color Emoji",
+                "Segoe UI Emoji"
+            ],
+            "body": [
+                "-apple-system",
+                "BlinkMacSystemFont",
+                "Segoe UI",
+                "Roboto",
+                "Helvetica",
+                "Arial",
+                "sans-serif",
+                "Apple Color Emoji",
+                "Segoe UI Emoji"
+            ],
+            "paragraph": [
+                "Inter",
+                "sans-serif"
+            ]
+        },
+        "fontSizes": {
+            "h1": "40px",
+            "h2": "26px",
+            "body": "24.5px"
+        }
+    },
+    "spacing": {
+        "baseUnit": 4,
+        "borderRadius": "4px"
+    },
+    "components": {
+        "buttonPrimary": {
+            "background": "#FF7A00",
+            "textColor": "#FFFFFF",
+            "borderRadius": "4px",
+            "borderRadiusCorners": {
+                "topLeft": "4px",
+                "topRight": "4px",
+                "bottomRight": "4px",
+                "bottomLeft": "4px"
+            },
+            "shadow": "none"
+        },
+        "buttonSecondary": {
+            "background": "#25262B",
+            "textColor": "#FFFFFF",
+            "borderColor": "#373A40",
+            "borderRadius": "4px",
+            "borderRadiusCorners": {
+                "topLeft": "4px",
+                "topRight": "4px",
+                "bottomRight": "4px",
+                "bottomLeft": "4px"
+            },
+            "shadow": "none"
+        }
+    },
+    "images": {
+        "logo": "https://cuewebapp.com/_next/image?url=%2Fassets%2Flogo-website-3.png&w=256&q=75",
+        "favicon": "https://cuewebapp.com/assets/logo-transparent.png",
+        "ogImage": "https://www.cuetheapp.com/assets/logo-website-3-dk.png?v=2",
+        "logoAlt": "CUE Logo"
+    },
+    "__llm_logo_reasoning": {
+        "selectedIndex": 0,
+        "reasoning": "Selected #0 because it is visible, located in the header, and matches the favicon, indicating it is the primary brand logo.",
+        "confidence": 0.9,
+        "source": "llm"
+    },
+    "__llm_button_reasoning": {
+        "primary": {
+            "index": 1,
+            "text": "Sign up",
+            "reasoning": "Button #1 with text 'Sign up' uses a vibrant orange color (#FF7A00), which is typically used for primary CTAs due to its high visibility and action-oriented text."
+        },
+        "secondary": {
+            "index": 2,
+            "text": "Log in",
+            "reasoning": "Button #2 with text 'Log in' uses a dark color (#25262B), which contrasts with the primary button's vibrant color, making it suitable as a secondary action."
+        },
+        "confidence": 0.95
+    },
+    "personality": {
+        "tone": "modern",
+        "energy": "medium",
+        "targetAudience": "tech-savvy individuals"
+    },
+    "designSystem": {
+        "framework": "custom",
+        "componentLibrary": ""
+    },
+    "confidence": {
+        "buttons": 0.95,
+        "colors": 0.9,
+        "overall": 0.925
+    },
+    "__llm_metadata": {
+        "logoSelection": {
+            "llmCalled": true,
+            "llmSucceeded": true,
+            "finalSource": "llm",
+            "rawLogoSelection": {
+                "selectedLogoIndex": 0,
+                "selectedLogoReasoning": "Selected #0 because it is visible, located in the header, and matches the favicon, indicating it is the primary brand logo.",
+                "confidence": 0.9
+            }
+        },
+        "buttonClassification": {
+            "llmCalled": true,
+            "llmSucceeded": true
+        }
+    }
+}
