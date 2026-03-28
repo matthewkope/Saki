@@ -1,5 +1,0 @@
-{
-  "/compatibility/page": "app/compatibility/page.js",
-  "/compatibility/friends/page": "app/compatibility/friends/page.js",
-  "/api/compatibility/session/route": "app/api/compatibility/session/route.js"
-}
