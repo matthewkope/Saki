@@ -21,20 +21,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/compatibility/page.js"
     ],
-    "/calendar/page": [
+    "/compatibility/friends/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/calendar/page.js"
-    ],
-    "/letterology/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/letterology/page.js"
-    ],
-    "/search/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/search/page.js"
+      "static/chunks/app/compatibility/friends/page.js"
     ]
   }
 }

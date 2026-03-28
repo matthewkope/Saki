@@ -1,4 +1,4 @@
-// File: /Users/matt/Desktop/New Project/cue-next/app/compatibility/page.tsx
+// File: /Users/matt/Desktop/Saki Website/cue-next/app/compatibility/page.tsx
 import * as entry from '../../../../app/compatibility/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

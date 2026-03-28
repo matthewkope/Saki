@@ -1,8 +1,6 @@
 {
-  "/page": "app/page.js",
+  "/api/compatibility/ingest/route": "app/api/compatibility/ingest/route.js",
+  "/api/compatibility/session/route": "app/api/compatibility/session/route.js",
   "/compatibility/page": "app/compatibility/page.js",
-  "/reading/page": "app/reading/page.js",
-  "/calendar/page": "app/calendar/page.js",
-  "/letterology/page": "app/letterology/page.js",
-  "/search/page": "app/search/page.js"
+  "/compatibility/friends/page": "app/compatibility/friends/page.js"
 }
