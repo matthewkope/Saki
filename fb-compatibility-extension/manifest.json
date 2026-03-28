@@ -3,7 +3,7 @@
   "name": "Facebook Birthday Compatibility Scraper",
   "version": "1.0",
   "description": "Scrapes Facebook birthdays and redirects to your compatibility app.",
-  "permissions": ["activeTab", "scripting"],
+  "permissions": ["activeTab", "scripting", "tabs"],
   "host_permissions": ["*://*.facebook.com/*", "http://localhost:3000/*"],
   "action": {
     "default_popup": "popup.html"

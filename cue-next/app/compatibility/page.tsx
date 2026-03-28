@@ -98,8 +98,8 @@ function calcScore(d1: PersonDate, d2: PersonDate): ScoreResult {
   const west1 = getWesternSignWithIndex(d1.month, d1.day);
   const west2 = getWesternSignWithIndex(d2.month, d2.day);
 
-  const compatLP1 = lp1.karmic13 ? 22 : lp1.lp;
-  const compatLP2 = lp2.karmic13 ? 22 : lp2.lp;
+  const compatLP1 = lp1.lp;
+  const compatLP2 = lp2.lp;
   const lpPct = LP_COMPAT[compatLP1]?.[compatLP2] ?? 50;
   const eastPct = EAST_COMPAT[east1.index][east2.index];
   const westPct = WEST_COMPAT[west1.index][west2.index];

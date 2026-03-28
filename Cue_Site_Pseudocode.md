@@ -85,9 +85,11 @@ function calcLP(month, day, year):
 ```
 
 ### 13/4 Karmic Rule
-- When raw == 13 → LP is 4, but displayed as "13/4"
-- In compatibility calculations, a 13/4 person uses **LP 22** for all table lookups
-- It is a karmic debt number — combines 4 energy with 22 potential
+
+- When raw == 13 → LP is 4, displayed as "13/4"
+- **Under investigation — not currently applied:** the 13/4 special compatibility mapping is unconfirmed
+- In compatibility calculations, 13/4 currently uses **LP 4** for all table lookups (treated as standard LP 4)
+- It is a karmic debt number — combines 4 energy with higher structural potential; unique compatibility signature to be determined
 
 ### 33 Pure vs 33/6
 - **Pure 33**: month ≤ 9 AND day ≤ 9 — reached using only single-digit inputs

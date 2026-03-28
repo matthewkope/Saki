@@ -460,19 +460,21 @@ Display: 11/29
 
 ## Compound Number 13/4 — Karmic Lifepath
 
-When the raw digit sum of a birth date equals exactly **13**, the result is treated as a special compound number rather than a plain LP 4.
+> **⚠️ Under Investigation — Not currently calculated.** The special compatibility treatment for 13/4 is still being researched and is not applied in the current algorithm. Until further notice, 13/4 is treated as a standard **LP 4** for all compatibility table lookups.
+
+When the raw digit sum of a birth date equals exactly **13**, the result is a special compound number. It is still detected and displayed as 13/4, but its compatibility behavior relative to other lifepaths has not yet been confirmed.
 
 ### Display
 
 Displayed as **13/4** (karmic number / reduced form), not "4/13" like other LPs.
 
-### Compatibility
+### Compatibility (current behavior)
 
-For all compatibility calculations, a person with LP 13/4 is treated as **LP 22**. Their row and column in the LP Compatibility Table are looked up using LP 22's values.
+Until the 13/4 compatibility pattern is confirmed, a person with LP 13/4 uses **LP 4** for all table lookups — the same row and column as a standard LP 4.
 
 ### Karmic significance
 
-13 is a karmic debt number in GG33-style numerology. It carries intensified 4 energy alongside a karmic obligation — the person oscillates between the grounded work of 4 and the higher structural power of 22.
+13 is a karmic debt number in GG33-style numerology. It carries intensified 4 energy alongside a karmic obligation — the person oscillates between the grounded work of 4 and a higher structural potential. Whether this warrants a unique compatibility signature (e.g. mapping to LP 22) is still under investigation.
 
 ### How it occurs
 

@@ -1,6 +1,4 @@
 {
-  "/api/compatibility/ingest/route": "app/api/compatibility/ingest/route.js",
-  "/api/compatibility/session/route": "app/api/compatibility/session/route.js",
   "/compatibility/page": "app/compatibility/page.js",
   "/compatibility/friends/page": "app/compatibility/friends/page.js"
 }

@@ -1,87 +1,160 @@
-function scrapeBirthdays() {
-    const seen = new Set();
-    const friends = [];
+// content.js
+if (!window.__fbExtensionInjected) {
+    window.__fbExtensionInjected = true;
 
-    const DATE_RE = /\b(January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2}(?:,\s*\d{4})?\b/;
+    function getFbDtsg() {
+    const input = document.querySelector('input[name="fb_dtsg"]');
+    if (input) return input.value;
+    
+    const scripts = document.querySelectorAll('script');
+    for (let script of scripts) {
+        const text = script.innerText;
+        // Method 1: DTSGInitialData
+        const match = text.match(/"DTSGInitialData",\[\],{"token":"([^"]+)"}/);
+        if (match) return match[1];
+        
+        // Method 2: fb_dtsg plain key
+        const match2 = text.match(/"fb_dtsg":"([^"]+)"/);
+        if (match2) return match2[1];
+    }
+    return null;
+}
 
-    function addFriend(name, birthday) {
-        const key = name.toLowerCase().trim();
-        if (!key || key.length < 2 || seen.has(key)) return;
-        const dateMatch = birthday.match(DATE_RE);
-        if (!dateMatch) return;
-        seen.add(key);
-        friends.push({ name: name.trim(), birthday: dateMatch[0].trim() });
+function getUserId() {
+    const match = document.cookie.match(/c_user=(\d+)/);
+    if (match) return match[1];
+
+    const scripts = document.querySelectorAll('script');
+    for (let script of scripts) {
+        const text = script.innerText;
+        const uMatch = text.match(/"USER_ID":"(\d+)"/);
+        if (uMatch) return uMatch[1];
+    }
+    return '0';
+}
+
+async function fetchFacebookBirthdays() {
+    const fbDtsg = getFbDtsg();
+    const userId = getUserId();
+
+    if (!fbDtsg) {
+        throw new Error("Could not find secure Facebook tokens. Are you fully logged in to facebook.com?");
     }
 
-    // Strategy 1: role="listitem" and <li> containers
-    document.querySelectorAll('[role="listitem"], li').forEach(row => {
-        const dateMatch = (row.innerText || '').match(DATE_RE);
-        if (!dateMatch) return;
-        const nameEl = row.querySelector('a[href*="facebook.com"], a[href^="/"], strong');
-        const name = nameEl ? nameEl.innerText.split('\n')[0].trim() : '';
-        if (name) addFriend(name, dateMatch[0]);
-    });
+    const DOC_ID = "26347570848226687";
+    let allFriends = [];
 
-    // Strategy 2: role="row" or role="gridcell" containers (calendar-style layout)
-    document.querySelectorAll('[role="row"], [role="gridcell"]').forEach(row => {
-        const dateMatch = (row.innerText || '').match(DATE_RE);
-        if (!dateMatch) return;
-        const nameEl = row.querySelector('a[href*="facebook.com"], a[href^="/"], strong');
-        const name = nameEl ? nameEl.innerText.split('\n')[0].trim() : '';
-        if (name) addFriend(name, dateMatch[0]);
-    });
+    // Loop through 12 months offset to grab the entire year of birthdays
+    for (let offset = 0; offset < 12; offset++) {
+        const variables = JSON.stringify({"count":500,"cursor":null,"offset_month":offset,"scale":2,"stream_birthday_months":false});
 
-    // Strategy 3: find every profile link on the page, then check siblings/parent for a date
-    document.querySelectorAll('a[href*="facebook.com/"], a[href^="/"]').forEach(link => {
-        const href = link.getAttribute('href') || '';
-        // Skip nav links, groups, pages, events
-        if (href.includes('/groups/') || href.includes('/events/') ||
-            href.includes('/pages/') || href.includes('/messages/') ||
-            href === '/' || href.startsWith('#')) return;
+        const formData = new URLSearchParams();
+        formData.append("__a", "1");
+        formData.append("__user", userId);
+        formData.append("fb_dtsg", fbDtsg);
+        formData.append("fb_api_caller_class", "RelayModern");
+        formData.append("fb_api_req_friendly_name", "BirthdayCometMonthlyBirthdaysRefetchQuery");
+        formData.append("variables", variables);
+        formData.append("doc_id", DOC_ID);
 
-        const name = link.innerText.split('\n')[0].trim();
-        if (!name || name.length < 2) return;
+        try {
+            const response = await fetch("https://www.facebook.com/api/graphql/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: formData.toString()
+            });
 
-        // Search parent elements up to 4 levels for a date string
-        let el = link.parentElement;
-        for (let i = 0; i < 4; i++) {
-            if (!el) break;
-            const text = el.innerText || '';
-            const dateMatch = text.match(DATE_RE);
-            if (dateMatch) {
-                addFriend(name, dateMatch[0]);
-                break;
-            }
-            el = el.parentElement;
-        }
-    });
-
-    // Strategy 4: sweep all text nodes for date strings, find nearest name
-    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-    let node;
-    while ((node = walker.nextNode())) {
-        const text = node.textContent || '';
-        const dateMatch = text.match(DATE_RE);
-        if (!dateMatch) continue;
-
-        // Walk up to find a sibling or ancestor with a profile link
-        let parent = node.parentElement;
-        for (let i = 0; i < 5; i++) {
-            if (!parent) break;
-            const link = parent.querySelector('a[href*="facebook.com/"], a[href^="/"]');
-            if (link) {
-                const href = link.getAttribute('href') || '';
-                if (!href.includes('/events/') && !href.includes('/groups/') && href !== '/') {
-                    const name = link.innerText.split('\n')[0].trim();
-                    if (name) { addFriend(name, dateMatch[0]); break; }
+            const text = await response.text();
+            const cleanText = text.replace("for (;;);", "");
+            
+            try {
+                const json = JSON.parse(cleanText);
+                allFriends = [...allFriends, ...parseGraphQLResponse(json)];
+            } catch(e) {
+                // Streamed JSON via newlines
+                const lines = cleanText.split('\n');
+                for (let line of lines) {
+                    if (!line.trim()) continue;
+                    try {
+                        const parsed = JSON.parse(line);
+                        allFriends = [...allFriends, ...parseGraphQLResponse(parsed)];
+                    } catch (pe) {}
                 }
             }
-            parent = parent.parentElement;
+        } catch (e) {
+            console.error("GraphQL Request Failed on offset " + offset + ":", e.message);
         }
     }
 
-    console.log(`[Birthday Scraper] Found ${friends.length} friends:`, friends);
+    // Deduplicate by name just in case Facebook returns overlapping windows
+    const dedup = [];
+    const seen = new Set();
+    for (const f of allFriends) {
+        if (!seen.has(f.name)) {
+            seen.add(f.name);
+            dedup.push(f);
+        }
+    }
+
+    if (dedup.length === 0) {
+        throw new Error("API call succeeded but 0 friends were found. The parser logic may need adjustment for this specific GraphQL payload.");
+    }
+    
+    return dedup;
+}
+
+function parseGraphQLResponse(json) {
+    let friends = [];
+    
+    // Recursively hunt for nested user nodes that have a name and birthday attached
+    function findBirthdays(obj) {
+        if (!obj || typeof obj !== 'object') return;
+        
+        if (obj.name && (obj.birthdate || obj.birthday || (obj.schema_birthday && obj.schema_birthday.day))) {
+            const dateNode = obj.birthdate || obj.birthday || obj.schema_birthday;
+            let dateString = null;
+
+            if (typeof dateNode === 'object') {
+                const parts = [];
+                if (dateNode.month) {
+                    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                    parts.push(months[dateNode.month - 1]);
+                }
+                if (dateNode.day) parts.push(dateNode.day);
+                if (dateNode.year) parts.push(dateNode.year);
+                
+                if (parts.length >= 2) {
+                    dateString = parts[0] + " " + parts[1] + (parts[2] ? ", " + parts[2] : "");
+                }
+            } else if (typeof dateNode === 'string') {
+                dateString = dateNode;
+            }
+            
+            if (dateString && !friends.find(f => f.name === obj.name)) {
+                friends.push({ name: obj.name, birthday: dateString });
+            }
+        }
+        
+        for (let key in obj) {
+             findBirthdays(obj[key]);
+        }
+    }
+    
+    findBirthdays(json);
+
     return friends;
 }
 
-scrapeBirthdays();
+// Wait for popup to trigger
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.action === "scrape") {
+        fetchFacebookBirthdays()
+            .then(data => sendResponse({ success: true, data }))
+            .catch(error => sendResponse({ success: false, error: error.message }));
+        
+        return true; 
+    }
+});
+}
