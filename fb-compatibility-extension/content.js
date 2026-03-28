@@ -124,16 +124,21 @@ function parseGraphQLResponse(json) {
                 }
                 if (dateNode.day) parts.push(dateNode.day);
                 if (dateNode.year) parts.push(dateNode.year);
-                
+
                 if (parts.length >= 2) {
                     dateString = parts[0] + " " + parts[1] + (parts[2] ? ", " + parts[2] : "");
                 }
             } else if (typeof dateNode === 'string') {
                 dateString = dateNode;
             }
-            
+
+            // Capture profile URL — Facebook returns it as `url` on user nodes
+            const profileUrl = (typeof obj.url === 'string' && obj.url.includes('facebook.com'))
+                ? obj.url
+                : obj.profile_url || null;
+
             if (dateString && !friends.find(f => f.name === obj.name)) {
-                friends.push({ name: obj.name, birthday: dateString });
+                friends.push({ name: obj.name, birthday: dateString, profileUrl });
             }
         }
         

@@ -19,7 +19,6 @@ export interface LPResult {
   lp: number;
   raw: number;
   display: string;
-  karmic13: boolean;
   pure33: boolean;
 }
 
@@ -34,13 +33,10 @@ export function calcLP(month: number, day: number, year: number): LPResult {
   let lp = reduceToLP(raw);
   if (lp === 2) lp = 11;
 
-  const karmic13 = raw === 13;
   const pure33 = lp === 33 && month <= 9 && day <= 9;
 
   let display: string;
-  if (karmic13) {
-    display = '13/4';
-  } else if (lp === 28) {
+  if (lp === 28) {
     display = '28/1';
   } else if (lp === 33) {
     display = pure33 ? '33' : '33/6';
@@ -50,7 +46,7 @@ export function calcLP(month: number, day: number, year: number): LPResult {
     display = String(lp);
   }
 
-  return { lp, raw, display, karmic13, pure33 };
+  return { lp, raw, display, pure33 };
 }
 
 export function calcSLP(day: number): number {

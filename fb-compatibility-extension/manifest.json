@@ -5,7 +5,13 @@
   "description": "Scrapes Facebook birthdays and redirects to your compatibility app.",
   "permissions": ["activeTab", "scripting", "tabs"],
   "host_permissions": ["*://*.facebook.com/*", "http://localhost:3000/*"],
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_icon": "icon128.png"
   }
 }

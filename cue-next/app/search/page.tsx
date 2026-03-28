@@ -7,7 +7,7 @@ import { getEasternAnimal, getWesternSign } from '@/lib/astrology';
 // ============================================================
 // CONSTANTS
 // ============================================================
-const LP_OPTIONS: (number | string)[] = [1, 3, 4, '13/4', 5, 6, 7, 8, 9, 11, 22, 28, 33, '33/6'];
+const LP_OPTIONS: (number | string)[] = [1, 3, 4, 5, 6, 7, 8, 9, 11, 22, 28, 33, '33/6'];
 const ZODIAC_OPTIONS = ['Rat','Ox','Tiger','Cat','Dragon','Snake','Horse','Goat','Monkey','Rooster','Dog','Pig'];
 const WESTERN_OPTIONS = ['Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces'];
 
@@ -142,8 +142,7 @@ export default function SearchPage() {
         let lpMatch = true;
         if (selected.numerology !== null) {
           const s = selected.numerology;
-          if (s === '13/4') lpMatch = lpData.karmic13;
-          else if (s === '33') lpMatch = lpData.lp === 33 && lpData.pure33;
+          if (s === '33') lpMatch = lpData.lp === 33 && lpData.pure33;
           else if (s === '33/6') lpMatch = lpData.lp === 33 && !lpData.pure33;
           else lpMatch = lpData.lp === parseInt(s);
         }

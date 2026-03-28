@@ -34,7 +34,7 @@ function FriendsCompatibilityContent() {
     const [userD, setUserD] = useState('');
     const [userY, setUserY] = useState('');
     
-    const [friends, setFriends] = useState<{name: string, birthday: string}[]>([]);
+    const [friends, setFriends] = useState<{name: string, birthday: string, profileUrl?: string}[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
@@ -63,7 +63,7 @@ function FriendsCompatibilityContent() {
     }, [sessionId]);
 
     const downloadCSV = () => {
-        const header = 'Name,Birthday,Score,Tier,Life Path,SLP,Eastern Zodiac,Western Zodiac';
+        const header = 'Name,Birthday,Score,Tier,Life Path,Intermediary,SLP,Eastern Zodiac,Western Zodiac';
         const rows = fullMatches.map(f => {
             const tier = f.scoreObj.score >= 80 ? 'Friendly' : f.scoreObj.score >= 60 ? 'Neutral' : 'Enemy';
             return [
@@ -71,7 +71,8 @@ function FriendsCompatibilityContent() {
                 `${f.parsed.m}/${f.parsed.d}/${f.parsed.y}`,
                 f.scoreObj.score.toFixed(1),
                 tier,
-                f.scoreObj.lp2.display,
+                f.scoreObj.lp2.lp,
+                f.scoreObj.lp2.raw,
                 f.scoreObj.slp2,
                 f.scoreObj.east2.animal,
                 f.scoreObj.west2.sign,
@@ -167,7 +168,12 @@ function FriendsCompatibilityContent() {
                                     <div style={{ position: 'absolute', top: 0, left: 0, width: '4px', height: '100%', background: f.scoreObj.score >= 80 ? 'var(--accent)' : f.scoreObj.score >= 60 ? 'var(--gold)' : 'var(--rose)' }} />
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                                         <div>
-                                            <div style={{ fontSize: '1.3rem', fontWeight: 600, color: '#eee' }}>{f.name}</div>
+                                            <div style={{ fontSize: '1.3rem', fontWeight: 600 }}>
+                                                {f.profileUrl
+                                                    ? <a href={f.profileUrl} target="_blank" rel="noreferrer" style={{ color: '#eee', textDecoration: 'none' }} onMouseEnter={e => (e.currentTarget.style.textDecoration='underline')} onMouseLeave={e => (e.currentTarget.style.textDecoration='none')}>{f.name}</a>
+                                                    : <span style={{ color: '#eee' }}>{f.name}</span>
+                                                }
+                                            </div>
                                             <div style={{ fontSize: '0.9rem', color: '#666', marginTop: '4px' }}>{f.parsed.m}/{f.parsed.d}/{f.parsed.y}</div>
                                         </div>
                                         <div style={{ fontSize: '2rem', fontFamily: "'Instrument Serif', serif", color: f.scoreObj.score >= 80 ? 'var(--accent)' : f.scoreObj.score >= 60 ? 'var(--gold)' : 'var(--rose)' }}>
@@ -196,7 +202,12 @@ function FriendsCompatibilityContent() {
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '16px' }}>
                             {partialMatches.map((f, i) => (
                                 <div key={i} style={{ background: 'rgba(10,10,10,0.5)', padding: '16px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.03)', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                                    <div style={{ fontSize: '1.1rem', fontWeight: 500, color: '#bbb' }}>{f.name}</div>
+                                    <div style={{ fontSize: '1.1rem', fontWeight: 500 }}>
+                                        {f.profileUrl
+                                            ? <a href={f.profileUrl} target="_blank" rel="noreferrer" style={{ color: '#bbb', textDecoration: 'none' }} onMouseEnter={e => (e.currentTarget.style.textDecoration='underline')} onMouseLeave={e => (e.currentTarget.style.textDecoration='none')}>{f.name}</a>
+                                            : <span style={{ color: '#bbb' }}>{f.name}</span>
+                                        }
+                                    </div>
                                     <div style={{ fontSize: '0.85rem', color: '#666' }}>Provided: {f.birthday}</div>
                                     <div style={{ fontSize: '0.85rem', color: 'var(--rose, #ff6070)', marginTop: '4px' }}>{f.reason}</div>
                                 </div>
