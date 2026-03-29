@@ -46,10 +46,10 @@ document.getElementById('scrapeBtn').addEventListener('click', async () => {
             statusDiv.textContent = `Success! Fetched ${data.length} friends. Opening Calculator...`;
 
             // Step 3: Pass to Next.js securely
-            const nextjsUrl = "http://localhost:3000/compatibility/friends";
+            const nextjsUrl = "https://saki-beta-five.vercel.app/compatibility/friends";
             const payload = { friends: data };
-            
-            fetch("http://localhost:3000/api/compatibility/ingest", {
+
+            fetch("https://saki-beta-five.vercel.app/api/compatibility/ingest", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload)
