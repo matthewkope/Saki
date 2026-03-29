@@ -24,6 +24,27 @@ const APPS = [
     description: 'Look up any date for its numerological profile',
     color: 'var(--teal)',
   },
+  {
+    label: 'Lucky Number',
+    href: '/lucky',
+    icon: '✦',
+    description: 'Find the lucky number for any birthday',
+    color: 'var(--gold)',
+  },
+  {
+    label: 'Locations',
+    href: '/locations',
+    icon: '◎',
+    description: 'Explore countries, states, and cities by their founding numerology',
+    color: 'var(--teal)',
+  },
+  {
+    label: 'Clothing',
+    href: '/clothing',
+    icon: '✦',
+    description: 'Explore fashion brands by their founding numerology',
+    color: 'var(--rose)',
+  },
 ];
 
 export default function AppsPage() {

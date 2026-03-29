@@ -4,8 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/components/AuthProvider';
-import { getEastRelation, calcScore, getScoreRelation } from '@/lib/compatibility';
-import { getEasternAnimal } from '@/lib/astrology';
+import { calcScore, getScoreRelation } from '@/lib/compatibility';
 
 const LP_ORDER = ['1','3','4','5','6','7','8','9','11','22','28','33','33/6'];
 
@@ -17,22 +16,23 @@ const EAST_TRIADS_FILTER = [
 ];
 
 const WEST_TRIADS_FILTER = [
-    { label: 'Fire — Aries · Leo · Sagittarius',        signs: ['Aries', 'Leo', 'Sagittarius']        },
-    { label: 'Earth — Taurus · Virgo · Capricorn',      signs: ['Taurus', 'Virgo', 'Capricorn']       },
-    { label: 'Air — Gemini · Libra · Aquarius',         signs: ['Gemini', 'Libra', 'Aquarius']        },
-    { label: 'Water — Cancer · Scorpio · Pisces',       signs: ['Cancer', 'Scorpio', 'Pisces']        },
+    { label: 'Fire — Aries · Leo · Sagittarius',   signs: ['Aries', 'Leo', 'Sagittarius'] },
+    { label: 'Earth — Taurus · Virgo · Capricorn', signs: ['Taurus', 'Virgo', 'Capricorn'] },
+    { label: 'Air — Gemini · Libra · Aquarius',    signs: ['Gemini', 'Libra', 'Aquarius'] },
+    { label: 'Water — Cancer · Scorpio · Pisces',  signs: ['Cancer', 'Scorpio', 'Pisces'] },
 ];
 
-interface Celebrity {
+interface ClothingBrand {
     id: number;
     name: string;
+    country: string | null;
+    founded_month: number | null;
+    founded_day: number | null;
+    founded_year: number | null;
     life_path: string;
     eastern_zodiac: string;
     western_zodiac: string;
     image_url: string | null;
-    month: number | null;
-    day: number | null;
-    year: number | null;
 }
 
 function toggle(arr: string[], val: string): string[] {
@@ -43,7 +43,7 @@ function PillGroup({ label, options, active, onToggle, color }: {
     label: string; options: string[]; active: string[];
     onToggle: (v: string) => void; color?: string;
 }) {
-    const accent = color || 'var(--accent, #60d0c0)';
+    const accent = color || 'var(--accent)';
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <span style={{ color: '#555', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>{label}</span>
@@ -66,16 +66,15 @@ function PillGroup({ label, options, active, onToggle, color }: {
 }
 
 const RELATION_DOT: Record<string, string> = {
-    friendly: 'var(--teal, #60d0c0)',
-    neutral:  'var(--gold, #f0d080)',
-    enemy:    'var(--rose, #ff80a0)',
+    friendly: 'var(--teal)',
+    neutral:  'var(--gold)',
+    enemy:    'var(--rose)',
 };
 
-export default function CelebritiesPage() {
+export default function ClothingPage() {
     const router = useRouter();
     const { session, loading: authLoading } = useAuth();
-    const [celebrities, setCelebrities] = useState<Celebrity[]>([]);
-    const [userAnimal, setUserAnimal] = useState<string | null>(null);
+    const [brands, setBrands] = useState<ClothingBrand[]>([]);
     const [userBirth, setUserBirth] = useState<{ month: number; day: number; year: number } | null>(null);
     const [savedIds, setSavedIds] = useState<Set<number>>(new Set());
     const [loading, setLoading] = useState(true);
@@ -92,37 +91,32 @@ export default function CelebritiesPage() {
         if (authLoading || !session) return;
         supabase.from('profiles').select('birth_month, birth_day, birth_year').eq('id', session.user.id).single()
             .then(({ data }) => {
-                if (data?.birth_month) {
-                    setUserAnimal(getEasternAnimal(data.birth_month, data.birth_day, data.birth_year));
-                    setUserBirth({ month: data.birth_month, day: data.birth_day, year: data.birth_year });
-                }
+                if (data?.birth_month) setUserBirth({ month: data.birth_month, day: data.birth_day, year: data.birth_year });
             });
-        supabase.from('saved_items').select('item_id').eq('user_id', session.user.id).eq('item_type', 'celebrity')
+        supabase.from('saved_items').select('item_id').eq('user_id', session.user.id).eq('item_type', 'clothing')
             .then(({ data }) => { if (data) setSavedIds(new Set(data.map(d => d.item_id))); });
     }, [session, authLoading]);
 
     useEffect(() => {
-        supabase.from('celebrities').select('*').order('name').then(({ data, error }) => {
-            if (error) setError('Failed to load celebrities.');
-            else setCelebrities(data || []);
+        supabase.from('clothing').select('*').order('name').then(({ data, error }) => {
+            if (error) setError('Failed to load brands.');
+            else setBrands(data || []);
             setLoading(false);
         });
     }, []);
 
-    const lpOptions = LP_ORDER;
-
     const visible = useMemo(() => {
-        const filtered = celebrities.filter(c => {
-            if (search && !c.name.toLowerCase().includes(search.toLowerCase())) return false;
-            if (filterLP.length > 0 && !filterLP.includes(c.life_path)) return false;
-            if (filterEast.length > 0 && !filterEast.includes(c.eastern_zodiac)) return false;
-            if (filterWest.length > 0 && !filterWest.includes(c.western_zodiac)) return false;
+        const filtered = brands.filter(b => {
+            if (search && !b.name.toLowerCase().includes(search.toLowerCase())) return false;
+            if (filterLP.length > 0 && !filterLP.includes(b.life_path.split('/')[0])) return false;
+            if (filterEast.length > 0 && !filterEast.includes(b.eastern_zodiac)) return false;
+            if (filterWest.length > 0 && !filterWest.includes(b.western_zodiac)) return false;
             return true;
         });
         if (!userBirth) return filtered;
         return [...filtered].sort((a, b) => {
-            const scoreOf = (c: Celebrity) => (c.month && c.day && c.year)
-                ? calcScore({ month: userBirth.month, day: userBirth.day, year: userBirth.year }, { month: c.month, day: c.day, year: c.year }).score
+            const scoreOf = (br: ClothingBrand) => (br.founded_month && br.founded_day && br.founded_year)
+                ? calcScore({ month: userBirth.month, day: userBirth.day, year: userBirth.year }, { month: br.founded_month, day: br.founded_day, year: br.founded_year }).score
                 : -1;
             const sa = scoreOf(a), sb = scoreOf(b);
             if (sa === -1 && sb === -1) return 0;
@@ -130,61 +124,56 @@ export default function CelebritiesPage() {
             if (sb === -1) return -1;
             return scoreSort === 'desc' ? sb - sa : sa - sb;
         });
-    }, [celebrities, search, filterLP, filterEast, filterWest, userBirth, scoreSort]);
+    }, [brands, search, filterLP, filterEast, filterWest, userBirth, scoreSort]);
 
     const totalActive = filterLP.length + filterEast.length + filterWest.length;
     const clearAll = () => { setFilterLP([]); setFilterEast([]); setFilterWest([]); };
 
-    async function toggleSave(e: React.MouseEvent, c: Celebrity) {
+    async function toggleSave(e: React.MouseEvent, b: ClothingBrand) {
         e.stopPropagation();
         if (!session) return;
-        if (savedIds.has(c.id)) {
-            await supabase.from('saved_items').delete().eq('user_id', session.user.id).eq('item_type', 'celebrity').eq('item_id', c.id);
-            setSavedIds(prev => { const s = new Set(prev); s.delete(c.id); return s; });
+        if (savedIds.has(b.id)) {
+            await supabase.from('saved_items').delete().eq('user_id', session.user.id).eq('item_type', 'clothing').eq('item_id', b.id);
+            setSavedIds(prev => { const s = new Set(prev); s.delete(b.id); return s; });
         } else {
-            await supabase.from('saved_items').insert({ user_id: session.user.id, item_type: 'celebrity', item_id: c.id, item_name: c.name, item_image_url: c.image_url });
-            setSavedIds(prev => new Set(prev).add(c.id));
+            await supabase.from('saved_items').insert({ user_id: session.user.id, item_type: 'clothing', item_id: b.id, item_name: b.name, item_image_url: b.image_url });
+            setSavedIds(prev => new Set(prev).add(b.id));
         }
     }
 
-    if (loading) return <div className="placeholder-msg">Loading celebrities...</div>;
+    if (loading) return <div className="placeholder-msg">Loading brands...</div>;
     if (error) return <div className="placeholder-msg" style={{ color: 'var(--rose)' }}>{error}</div>;
 
     return (
         <div style={{ padding: '40px 20px', maxWidth: '1100px', margin: '0 auto', fontFamily: "'Inter', sans-serif" }}>
 
-            {/* Header */}
             <div style={{ marginBottom: '32px' }}>
-                <h1 style={{ fontFamily: "'Instrument Serif', serif", fontSize: '2.6rem', color: 'var(--accent,#60d0c0)', margin: '0 0 6px', letterSpacing: '0.02em' }}>
-                    Celebrities
+                <h1 style={{ fontFamily: "'Instrument Serif', serif", fontSize: '2.6rem', color: 'var(--rose)', margin: '0 0 6px', letterSpacing: '0.02em' }}>
+                    Clothing
                 </h1>
                 <p style={{ color: '#555', margin: 0, fontSize: '0.95rem' }}>
-                    {visible.length}{visible.length !== celebrities.length ? ` of ${celebrities.length}` : ''} entries
+                    {visible.length}{visible.length !== brands.length ? ` of ${brands.length}` : ''} entries
                 </p>
             </div>
 
-            {/* Search + Filter */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '32px' }}>
-
-                {/* Search bar */}
                 <input
                     value={search}
                     onChange={e => setSearch(e.target.value)}
-                    placeholder="Search by name..."
+                    placeholder="Search by brand name..."
                     style={{ padding: '12px 16px', background: '#0a0a0a', border: '1px solid #2a2a2a', color: '#ccc', borderRadius: '10px', fontSize: '0.95rem', outline: 'none', width: '100%', boxSizing: 'border-box' }}
                 />
 
-                {/* Filter panel */}
                 <div style={{ background: 'rgba(255,255,255,0.03)', borderRadius: '14px', border: '1px solid rgba(255,255,255,0.06)', overflow: 'hidden' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '13px 18px' }}>
                         <div onClick={() => setFilterOpen(o => !o)} style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer', flex: 1 }}>
                             <span style={{ color: '#555', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-                                Filters {totalActive > 0 && <span style={{ color: 'var(--accent,#60d0c0)', marginLeft: '6px' }}>({totalActive} active)</span>}
+                                Filters {totalActive > 0 && <span style={{ color: 'var(--rose)', marginLeft: '6px' }}>({totalActive} active)</span>}
                             </span>
                             <span style={{ color: '#555', fontSize: '0.85rem' }}>{filterOpen ? '▲' : '▼'}</span>
                         </div>
                         {totalActive > 0 && (
-                            <button onClick={clearAll} style={{ background: 'transparent', color: 'var(--rose,#ff6070)', border: '1px solid var(--rose,#ff6070)', padding: '3px 10px', borderRadius: '20px', cursor: 'pointer', fontSize: '0.78rem' }}>
+                            <button onClick={clearAll} style={{ background: 'transparent', color: 'var(--rose)', border: '1px solid var(--rose)', padding: '3px 10px', borderRadius: '20px', cursor: 'pointer', fontSize: '0.78rem' }}>
                                 Clear all
                             </button>
                         )}
@@ -193,10 +182,8 @@ export default function CelebritiesPage() {
                         <div style={{ padding: '4px 18px 18px', display: 'flex', flexDirection: 'column', gap: '18px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
                             <div style={{ height: '2px' }} />
 
-                            {/* Life Path */}
-                            <PillGroup label="Life Path" options={lpOptions} active={filterLP} onToggle={v => setFilterLP(toggle(filterLP, v))} />
+                            <PillGroup label="Life Path" options={LP_ORDER} active={filterLP} onToggle={v => setFilterLP(toggle(filterLP, v))} color="var(--rose)" />
 
-                            {/* Eastern Zodiac — grouped by triad */}
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                                 <span style={{ color: '#555', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Eastern Zodiac</span>
                                 {EAST_TRIADS_FILTER.map(triad => (
@@ -208,9 +195,9 @@ export default function CelebritiesPage() {
                                                 return (
                                                     <button key={a} onClick={() => setFilterEast(toggle(filterEast, a))} style={{
                                                         padding: '5px 12px', borderRadius: '20px', fontSize: '0.85rem', cursor: 'pointer',
-                                                        border: `1px solid ${on ? 'var(--gold,#f0d080)' : '#333'}`,
+                                                        border: `1px solid ${on ? 'var(--gold)' : '#333'}`,
                                                         background: on ? 'rgba(240,208,128,0.15)' : 'transparent',
-                                                        color: on ? 'var(--gold,#f0d080)' : '#666',
+                                                        color: on ? 'var(--gold)' : '#666',
                                                         transition: 'all 0.15s',
                                                     }}>{a}</button>
                                                 );
@@ -220,7 +207,6 @@ export default function CelebritiesPage() {
                                 ))}
                             </div>
 
-                            {/* Western Zodiac — grouped by element */}
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                                 <span style={{ color: '#555', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Western Zodiac</span>
                                 {WEST_TRIADS_FILTER.map(elem => (
@@ -248,12 +234,10 @@ export default function CelebritiesPage() {
                 </div>
             </div>
 
-            {/* Table */}
             {visible.length > 0 ? (
                 <div style={{ borderRadius: '14px', border: '1px solid rgba(255,255,255,0.07)', overflow: 'hidden' }}>
-                    {/* Table header */}
                     <div style={{ display: 'grid', gridTemplateColumns: `2fr 1fr 1fr 1fr${userBirth ? ' 0.6fr' : ''}${session ? ' 32px' : ''}`, padding: '12px 20px', background: 'rgba(255,255,255,0.03)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-                        {['Name', 'Life Path', 'Eastern', 'Western', ...(userBirth ? ['Score'] : []), ...(session ? [''] : [])].map(h => (
+                        {['Brand', 'Life Path', 'Eastern', 'Western', ...(userBirth ? ['Score'] : []), ...(session ? [''] : [])].map(h => (
                             h === 'Score' ? (
                                 <button key={h} onClick={() => setScoreSort(s => s === 'desc' ? 'asc' : 'desc')} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.72rem', color: '#888', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
                                     Score <span style={{ fontSize: '0.65rem' }}>{scoreSort === 'desc' ? '↓' : '↑'}</span>
@@ -264,58 +248,62 @@ export default function CelebritiesPage() {
                         ))}
                     </div>
 
-                    {/* Rows */}
-                    {visible.map((c, i) => (
-                        <div key={c.id}
-                            onClick={() => router.push(`/celebrities/${c.id}`)}
+                    {visible.map((b, i) => (
+                        <div key={b.id}
+                            onClick={() => router.push(`/clothing/${b.id}`)}
                             style={{
                                 display: 'grid', gridTemplateColumns: `2fr 1fr 1fr 1fr${userBirth ? ' 0.6fr' : ''}${session ? ' 32px' : ''}`,
                                 padding: '16px 20px', cursor: 'pointer',
                                 borderBottom: i < visible.length - 1 ? '1px solid rgba(255,255,255,0.04)' : 'none',
                                 background: 'rgba(10,10,10,0.5)', transition: 'background 0.12s',
                             }}
-                            onMouseEnter={e => (e.currentTarget.style.background = 'rgba(96,208,192,0.05)')}
+                            onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,128,160,0.05)')}
                             onMouseLeave={e => (e.currentTarget.style.background = 'rgba(10,10,10,0.5)')}
                         >
-                            {/* Name + photo */}
                             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                <div style={{ width: '38px', height: '38px', borderRadius: '50%', overflow: 'hidden', background: '#111', flexShrink: 0, border: '1px solid #222' }}>
-                                    {c.image_url
-                                        ? <img src={c.image_url} alt={c.name} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
-                                        : <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#333', fontSize: '1rem' }}>★</div>
+                                <div style={{ width: '38px', height: '38px', borderRadius: '8px', overflow: 'hidden', background: '#fff', flexShrink: 0, border: '1px solid #222' }}>
+                                    {b.image_url
+                                        ? <img src={b.image_url} alt={b.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                        : <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#333', fontSize: '1rem' }}>✦</div>
                                     }
                                 </div>
                                 <div>
-                                    <div style={{ color: '#eee', fontWeight: 500, fontSize: '0.95rem' }}>{c.name}</div>
-                                    {c.month && c.day && c.year && (
-                                        <div style={{ color: '#555', fontSize: '0.78rem', marginTop: '2px' }}>{c.month}/{c.day}/{c.year}</div>
-                                    )}
+                                    <div style={{ color: '#eee', fontWeight: 500, fontSize: '0.95rem' }}>{b.name}</div>
+                                    <div style={{ color: '#555', fontSize: '0.78rem', marginTop: '2px' }}>
+                                        {b.country && <span>{b.country}</span>}
+                                        {b.country && b.founded_year && <span> · </span>}
+                                        {b.founded_year && <span>Est. {b.founded_year}</span>}
+                                    </div>
                                 </div>
                             </div>
+
                             <div style={{ display: 'flex', alignItems: 'center' }}>
-                                <span style={{ color: 'var(--accent,#60d0c0)', fontSize: '0.9rem', fontWeight: 500 }}>LP {c.life_path}</span>
+                                <span style={{ color: 'var(--rose)', fontSize: '0.9rem', fontWeight: 500 }}>LP {b.life_path.split('/')[0]}</span>
                             </div>
+
                             <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                                <span style={{ color: 'var(--gold,#f0d080)', fontSize: '0.9rem' }}>{c.eastern_zodiac}</span>
-                                {userBirth && c.month && c.day && c.year && (() => {
+                                <span style={{ color: 'var(--gold)', fontSize: '0.9rem' }}>{b.eastern_zodiac}</span>
+                                {userBirth && b.founded_month && b.founded_day && b.founded_year && (() => {
                                     const result = calcScore(
                                         { month: userBirth.month, day: userBirth.day, year: userBirth.year },
-                                        { month: c.month, day: c.day, year: c.year }
+                                        { month: b.founded_month, day: b.founded_day, year: b.founded_year }
                                     );
                                     const rel = getScoreRelation(result.score);
                                     return <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: RELATION_DOT[rel], flexShrink: 0, display: 'inline-block' }} title={rel} />;
                                 })()}
                             </div>
+
                             <div style={{ display: 'flex', alignItems: 'center' }}>
-                                <span style={{ color: '#a78bfa', fontSize: '0.9rem' }}>{c.western_zodiac}</span>
+                                <span style={{ color: '#a78bfa', fontSize: '0.9rem' }}>{b.western_zodiac}</span>
                             </div>
-                            {userBirth && c.month && c.day && c.year && (() => {
+
+                            {userBirth && b.founded_month && b.founded_day && b.founded_year && (() => {
                                 const result = calcScore(
                                     { month: userBirth.month, day: userBirth.day, year: userBirth.year },
-                                    { month: c.month, day: c.day, year: c.year }
+                                    { month: b.founded_month, day: b.founded_day, year: b.founded_year }
                                 );
                                 const rel = getScoreRelation(result.score);
-                                const color = rel === 'friendly' ? 'var(--teal,#60d0c0)' : rel === 'enemy' ? 'var(--rose,#ff80a0)' : 'var(--gold,#f0d080)';
+                                const color = rel === 'friendly' ? 'var(--teal)' : rel === 'enemy' ? 'var(--rose)' : 'var(--gold)';
                                 return (
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
                                         <span style={{ color, fontSize: '0.9rem', fontWeight: 600 }}>{Math.round(result.score)}</span>
@@ -324,8 +312,8 @@ export default function CelebritiesPage() {
                             })()}
                             {session && (
                                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                    <button onClick={e => toggleSave(e, c)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1rem', color: savedIds.has(c.id) ? 'var(--rose,#ff80a0)' : '#444', lineHeight: 1, padding: 0 }}>
-                                        {savedIds.has(c.id) ? '♥' : '♡'}
+                                    <button onClick={e => toggleSave(e, b)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1rem', color: savedIds.has(b.id) ? 'var(--rose)' : '#444', lineHeight: 1, padding: 0 }}>
+                                        {savedIds.has(b.id) ? '♥' : '♡'}
                                     </button>
                                 </div>
                             )}
@@ -334,7 +322,7 @@ export default function CelebritiesPage() {
                 </div>
             ) : (
                 <div style={{ textAlign: 'center', padding: '60px', color: '#555', border: '1px dashed #2a2a2a', borderRadius: '14px' }}>
-                    No celebrities match the current filters.
+                    No brands match the current filters.
                 </div>
             )}
         </div>

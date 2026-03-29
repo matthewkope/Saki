@@ -89,6 +89,48 @@ export function calcPersonalYear(month: number, day: number): PersonalYearResult
   return { py, raw, display };
 }
 
+export interface PersonalMonthResult {
+  pm: number;
+  display: string;
+  startMonth: number;
+  startDay: number;
+  endMonth: number;
+  endDay: number;
+}
+
+export function calcPersonalMonth(birthMonth: number, birthDay: number): PersonalMonthResult {
+  const now = new Date();
+  const todayDay = now.getDate();
+  const todayMonth = now.getMonth() + 1;
+
+  // Personal Year
+  const { py } = calcPersonalYear(birthMonth, birthDay);
+
+  // Effective month
+  let effectiveMonth: number;
+  if (todayDay >= birthDay) {
+    effectiveMonth = todayMonth;
+  } else {
+    effectiveMonth = todayMonth - 1;
+    if (effectiveMonth === 0) effectiveMonth = 12;
+  }
+
+  // Personal Month
+  let pm = py + effectiveMonth;
+  while (pm > 9 && ![11, 22, 33].includes(pm)) {
+    pm = digitSum(pm);
+  }
+
+  // Period dates
+  const startMonth = effectiveMonth;
+  const startDay = birthDay;
+  const endMonth = effectiveMonth === 12 ? 1 : effectiveMonth + 1;
+  const endDay = birthDay > 1 ? birthDay - 1 : new Date(now.getFullYear(), effectiveMonth, 0).getDate();
+
+  const display = String(pm);
+  return { pm, display, startMonth, startDay, endMonth, endDay };
+}
+
 export function calcLuckyNumber(month: number, day: number, year: number): number {
   const firstDigit = parseInt(String(month)[0]);
   // Last non-zero digit of year (e.g. 2000 → 2, not 0)

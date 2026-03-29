@@ -4,7 +4,7 @@
   "version": "1.0",
   "description": "Scrapes Facebook birthdays and redirects to your compatibility app.",
   "permissions": ["activeTab", "scripting", "tabs"],
-  "host_permissions": ["*://*.facebook.com/*", "http://localhost:3000/*"],
+  "host_permissions": ["*://*.facebook.com/*", "http://localhost:3000/*", "https://saki-beta-five.vercel.app/*"],
   "icons": {
     "16": "icon16.png",
     "48": "icon48.png",

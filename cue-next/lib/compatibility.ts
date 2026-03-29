@@ -31,6 +31,35 @@ export const SLP_COMPAT: Record<number, Record<number, number>> = {
   28:{1:3.92,2:3.92,3:0.79,4:0.79,5:-1.81,6:0.79,7:0.79,8:0.14,9:-3.02,11:4.25,22:0.75,28:2.38},
 };
 
+export const EAST_TRIADS: string[][] = [
+  ['Rat', 'Dragon', 'Monkey'],
+  ['Ox', 'Snake', 'Rooster'],
+  ['Tiger', 'Horse', 'Dog'],
+  ['Cat', 'Goat', 'Pig'],
+];
+
+export const EAST_ENEMIES: Record<string, string> = {
+  Rat: 'Horse', Horse: 'Rat',
+  Ox: 'Goat', Goat: 'Ox',
+  Tiger: 'Monkey', Monkey: 'Tiger',
+  Cat: 'Rooster', Rooster: 'Cat',
+  Dragon: 'Dog', Dog: 'Dragon',
+  Snake: 'Pig', Pig: 'Snake',
+};
+
+export function getEastRelation(a1: string, a2: string): 'friendly' | 'neutral' | 'enemy' {
+  if (a1 === a2) return 'friendly';
+  if (EAST_ENEMIES[a1] === a2) return 'enemy';
+  if (EAST_TRIADS.some(t => t.includes(a1) && t.includes(a2))) return 'friendly';
+  return 'neutral';
+}
+
+export function getScoreRelation(score: number): 'friendly' | 'neutral' | 'enemy' {
+  if (score >= 80) return 'friendly';
+  if (score >= 60) return 'neutral';
+  return 'enemy';
+}
+
 export const EAST_COMPAT: number[][] = [
   [70,105,60,50,80,70,10,60,80,60,60,60],
   [105,70,60,60,60,80,60,10,60,80,60,60],

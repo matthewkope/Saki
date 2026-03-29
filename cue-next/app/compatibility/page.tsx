@@ -1,6 +1,8 @@
 'use client';
 
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
+
 import { calcLP, calcSLP } from '@/lib/numerology';
 import { getEasternAnimalWithIndex, getWesternSignWithIndex } from '@/lib/astrology';
 
@@ -181,13 +183,14 @@ function DateInputGroup({ label, mm, dd, yyyy, isP2, mmRef, ddRef, yyyyRef, onMm
 // ============================================================
 // MAIN COMPONENT
 // ============================================================
-export default function CompatibilityPage() {
-  const [p1mm, setP1mm] = useState('');
-  const [p1dd, setP1dd] = useState('');
-  const [p1yyyy, setP1yyyy] = useState('');
-  const [p2mm, setP2mm] = useState('');
-  const [p2dd, setP2dd] = useState('');
-  const [p2yyyy, setP2yyyy] = useState('');
+function CompatibilityCalc() {
+  const params = useSearchParams();
+  const [p1mm, setP1mm] = useState(params.get('p1m') || '');
+  const [p1dd, setP1dd] = useState(params.get('p1d') || '');
+  const [p1yyyy, setP1yyyy] = useState(params.get('p1y') || '');
+  const [p2mm, setP2mm] = useState(params.get('p2m') || '');
+  const [p2dd, setP2dd] = useState(params.get('p2d') || '');
+  const [p2yyyy, setP2yyyy] = useState(params.get('p2y') || '');
   const [result, setResult] = useState<ScoreResult | null>(null);
 
   const p1mmRef = useRef<HTMLInputElement>(null);
@@ -217,6 +220,12 @@ export default function CompatibilityPage() {
   function h2mm(v: string) { setP2mm(v); if (v.length === 2) p2ddRef.current?.focus(); tryCalc(p1mm, p1dd, p1yyyy, v, p2dd, p2yyyy); }
   function h2dd(v: string) { setP2dd(v); if (v.length === 2) p2yyyyRef.current?.focus(); tryCalc(p1mm, p1dd, p1yyyy, p2mm, v, p2yyyy); }
   function h2yyyy(v: string) { setP2yyyy(v); tryCalc(p1mm, p1dd, p1yyyy, p2mm, p2dd, v); }
+
+  useEffect(() => {
+    if (p1mm && p1dd && p1yyyy && p2mm && p2dd && p2yyyy)
+      tryCalc(p1mm, p1dd, p1yyyy, p2mm, p2dd, p2yyyy);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const circ = 2 * Math.PI * 80;
   const tier = result ? getTier(result.score) : null;
@@ -364,5 +373,13 @@ export default function CompatibilityPage() {
         )}
       </div>
     </>
+  );
+}
+
+export default function CompatibilityPage() {
+  return (
+    <Suspense>
+      <CompatibilityCalc />
+    </Suspense>
   );
 }
