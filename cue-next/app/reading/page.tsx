@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { calcLP, calcSLP, calcPersonalYear, calcLuckyNumber } from '@/lib/numerology';
+import { calcLP, calcSLP, calcPersonalYear, calcPersonalMonth } from '@/lib/numerology';
 import { getEasternAnimal, getWesternSign } from '@/lib/astrology';
 import { CONTENT } from '@/lib/content';
 
@@ -18,6 +18,42 @@ const WEST_EMOJIS: Record<string, string> = {
   Libra: '♎', Scorpio: '♏', Sagittarius: '♐', Capricorn: '♑', Aquarius: '♒', Pisces: '♓',
 };
 
+// Zodiac triads — friendly within group, enemy is the opposite sign
+const TRIADS: string[][] = [
+  ['Rat', 'Dragon', 'Monkey'],
+  ['Ox', 'Snake', 'Rooster'],
+  ['Tiger', 'Horse', 'Dog'],
+  ['Cat', 'Goat', 'Pig'],
+];
+const ENEMIES: Record<string, string> = {
+  Rat: 'Horse', Horse: 'Rat',
+  Ox: 'Goat',  Goat: 'Ox',
+  Tiger: 'Monkey', Monkey: 'Tiger',
+  Cat: 'Rooster', Rooster: 'Cat',
+  Dragon: 'Dog', Dog: 'Dragon',
+  Snake: 'Pig',  Pig: 'Snake',
+};
+const ANIMALS_ORDER = ['Rat','Ox','Tiger','Cat','Dragon','Snake','Horse','Goat','Monkey','Rooster','Dog','Pig'];
+
+function animalForYear(y: number): string {
+  return ANIMALS_ORDER[((y - 2020) % 12 + 12) % 12];
+}
+
+function pyForYear(birthMonth: number, birthDay: number, calYear: number): number {
+  const mVal = birthMonth === 11 ? 11 : birthMonth;
+  const yearDigitSum = String(calYear).split('').reduce((s, c) => s + parseInt(c), 0);
+  let raw = mVal + birthDay + yearDigitSum;
+  while (raw > 9 && ![11, 22, 33].includes(raw)) {
+    raw = String(raw).split('').reduce((s, c) => s + parseInt(c), 0);
+  }
+  if (raw === 2) raw = 11;
+  return raw;
+}
+
+function getTriad(animal: string): string[] {
+  return TRIADS.find(t => t.includes(animal)) ?? [];
+}
+
 // ============================================================
 // TYPES
 // ============================================================
@@ -29,10 +65,11 @@ interface ReadingData {
   sign: string;
   py: number;
   pyDisplay: string;
-  lucky: number;
+  pm: number;
+  pmDisplay: string;
 }
 
-type PanelType = 'numerology' | 'zodiac' | 'western' | 'careers' | 'personalYear';
+type PanelType = 'numerology' | 'zodiac' | 'western' | 'careers' | 'personalYear' | 'timeline';
 
 // ============================================================
 // MARKDOWN RENDERER
@@ -112,7 +149,7 @@ export default function ReadingPage() {
     const animal = getEasternAnimal(m, d, y);
     const sign = getWesternSign(m, d);
     const pyData = calcPersonalYear(m, d);
-    const lucky = calcLuckyNumber(m, d, y);
+    const pmData = calcPersonalMonth(m, d);
 
     setError('');
     setReading({
@@ -123,7 +160,8 @@ export default function ReadingPage() {
       sign,
       py: pyData.py,
       pyDisplay: pyData.display,
-      lucky,
+      pm: pmData.pm,
+      pmDisplay: pmData.display,
     });
   }, []);
 
@@ -195,12 +233,72 @@ export default function ReadingPage() {
       text = (CONTENT.careers as Record<number, string>)[key] || '# Careers\n\nContent coming soon.';
       em = '💼';
       label = key + ' Life Path — Careers';
-    } else {
-      // personalYear
+    } else if (type === 'personalYear') {
       key = reading.py;
       text = (CONTENT.personalYear as Record<number, string>)[key] || '# Personal Year\n\nContent coming soon.';
       em = '🗓️';
       label = 'Personal Year ' + reading.pyDisplay;
+    } else {
+      // timeline
+      const birthYear = parseInt(yyyy);
+      const currentYear = new Date().getFullYear();
+      const userAnimal = reading.animal;
+      const userTriad = getTriad(userAnimal);
+      const enemy = ENEMIES[userAnimal];
+
+      let rows = '';
+      for (let yr = birthYear; yr <= currentYear + 10; yr++) {
+        const yrAnimal = animalForYear(yr);
+        const yrPy = pyForYear(parseInt(mm), parseInt(dd), yr);
+
+        let relation: 'self' | 'friendly' | 'enemy' | 'neutral';
+        if (yrAnimal === userAnimal) relation = 'self';
+        else if (userTriad.includes(yrAnimal)) relation = 'friendly';
+        else if (yrAnimal === enemy) relation = 'enemy';
+        else relation = 'neutral';
+
+        const color = relation === 'self' ? '#f0d080' : relation === 'friendly' ? '#60d0c0' : relation === 'enemy' ? '#ff80a0' : '#c0c0c0';
+        const badge = relation === 'self' ? '★' : relation === 'friendly' ? '♥' : relation === 'enemy' ? '✕' : '·';
+        const isBirth = yr === birthYear;
+        const isCurrent = yr === currentYear;
+        const rowBg = isBirth ? 'background:#1a1a2e;' : isCurrent ? 'background:#1a1a1a;' : '';
+        const yearLabel = yr + (isBirth ? ' ★' : isCurrent ? ' ←' : '');
+
+        rows += `<tr id="${isCurrent ? 'tl-current' : ''}" style="${rowBg}">` +
+          `<td style="padding:6px 10px;color:${isBirth || isCurrent ? '#fff' : '#aaa'};font-weight:${isBirth || isCurrent ? '600' : '400'}">${yearLabel}</td>` +
+          `<td style="padding:6px 10px;color:${color}">${ZODIAC_EMOJIS[yrAnimal] || ''} ${yrAnimal}</td>` +
+          `<td style="padding:6px 10px;color:#c4a0ff;text-align:center">PY ${yrPy}</td>` +
+          `<td style="padding:6px 10px;color:${color};text-align:center;font-size:1rem">${badge}</td>` +
+          `</tr>`;
+      }
+
+      const timelineHtml =
+        `<div style="margin-bottom:16px;font-size:0.85rem;color:#888">Your zodiac is <strong style="color:#f0d080">${userAnimal}</strong>. ` +
+        `Friendly years: <span style="color:#60d0c0">${userTriad.join(', ')}</span>. ` +
+        `Enemy years: <span style="color:#ff80a0">${enemy}</span>.</div>` +
+        `<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:0.88rem">` +
+        `<thead><tr style="border-bottom:1px solid #333">` +
+        `<th style="padding:6px 10px;text-align:left;color:#666;font-weight:500">Year</th>` +
+        `<th style="padding:6px 10px;text-align:left;color:#666;font-weight:500">Animal</th>` +
+        `<th style="padding:6px 10px;text-align:center;color:#666;font-weight:500">Personal Year</th>` +
+        `<th style="padding:6px 10px;text-align:center;color:#666;font-weight:500">Energy</th>` +
+        `</tr></thead><tbody>${rows}</tbody></table></div>`;
+
+      em = '📆';
+      label = 'Your Timeline';
+      text = '';
+      key = 0;
+      setPanelEmoji(em);
+      setPanelTitle(label);
+      setPanelHtml(timelineHtml);
+      setPanelOpen(true);
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => {
+        const el = document.getElementById('tl-current');
+        if (el) el.scrollIntoView({ block: 'center' });
+        else if (panelRef.current) panelRef.current.scrollTop = 0;
+      }, 80);
+      return;
     }
 
     setPanelEmoji(em);
@@ -317,8 +415,8 @@ export default function ReadingPage() {
                   <span className="reading-val" style={{ color: 'var(--gold)' }}>🗓️ {reading.pyDisplay}</span>
                 </div>
                 <div className="reading-row">
-                  <span className="reading-key">Lucky Number</span>
-                  <span className="reading-val" style={{ color: 'var(--rose)' }}>🍀 {reading.lucky}</span>
+                  <span className="reading-key">Personal Month</span>
+                  <span className="reading-val" style={{ color: 'var(--rose)' }}>📅 {reading.pmDisplay}</span>
                 </div>
               </div>
             </div>
@@ -345,6 +443,10 @@ export default function ReadingPage() {
               <div className="tile" onClick={() => openPanel('personalYear')}>
                 <div className="tile-emoji">🗓️</div>
                 <div className="tile-label">Personal Year</div>
+              </div>
+              <div className="tile" onClick={() => openPanel('timeline')}>
+                <div className="tile-emoji">📆</div>
+                <div className="tile-label">Timeline</div>
               </div>
             </div>
           </>
