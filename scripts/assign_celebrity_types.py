@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Assign a 'type' to every celebrity in the Supabase database.
-Types: Athlete, Actor, Musician, Comedian, Politician, Business, Royalty, Influencer, Other
+Types: Athlete, Actor, Musician, Comedian, Politician, Business, Scientist, Royalty, Influencer, Other
 
 Usage:
   python3 scripts/assign_celebrity_types.py --service-key YOUR_SUPABASE_SERVICE_ROLE_KEY
@@ -194,6 +194,11 @@ TYPES = {
     'Jack Ma':              'Business',
     'Richard Branson':      'Business',
     'Oprah Winfrey':        'Business',
+    'Thomas Edison':        'Business',
+
+    # Scientists
+    'Albert Einstein':      'Scientist',
+    'Isaac Newton':         'Scientist',
 
     # Royalty
     'Queen Elizabeth II':   'Royalty',

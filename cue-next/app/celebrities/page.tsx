@@ -8,7 +8,7 @@ import { calcScore, getScoreRelation } from '@/lib/compatibility';
 
 const LP_ORDER = ['1','3','4','5','6','7','8','9','11','22','28','33','33/6'];
 
-const TYPE_OPTIONS = ['Athlete', 'Actor', 'Musician', 'Comedian', 'Politician', 'Business', 'Royalty', 'Influencer', 'Religion', 'Occult', 'Other'];
+const TYPE_OPTIONS = ['Athlete', 'Actor', 'Musician', 'Comedian', 'Politician', 'Business', 'Scientist', 'Royalty', 'Influencer', 'Religion', 'Occult', 'Other'];
 
 const EAST_TRIADS_FILTER = [
     { label: 'Rat · Dragon · Monkey', animals: ['Rat', 'Dragon', 'Monkey'] },
