@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import SavedDates from '@/components/SavedDates';
 
 import { calcLP, calcSLP } from '@/lib/numerology';
 import { getEasternAnimalWithIndex, getWesternSignWithIndex } from '@/lib/astrology';
@@ -262,6 +263,13 @@ function CompatibilityCalc() {
               onYyyyKey={(e) => { if (e.key === 'Backspace' && p2yyyy === '') { e.preventDefault(); p2ddRef.current?.focus(); } }}
             />
           </div>
+          <SavedDates
+            currentMm={p1mm}
+            currentDd={p1dd}
+            currentYyyy={p1yyyy}
+            onSelect={(m, d, y) => { setP1mm(m); setP1dd(d); setP1yyyy(y); tryCalc(m, d, p1yyyy, p2mm, p2dd, p2yyyy); }}
+            onSelectP2={(m, d, y) => { setP2mm(m); setP2dd(d); setP2yyyy(y); tryCalc(p1mm, p1dd, p1yyyy, m, d, y); }}
+          />
         </div>
       </div>
 

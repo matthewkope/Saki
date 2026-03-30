@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect, useCallback } from 'react';
+import SavedDates from '@/components/SavedDates';
 import { calcLP, calcSLP, calcPersonalYear, calcPersonalMonth } from '@/lib/numerology';
 import { getEasternAnimal, getWesternSign } from '@/lib/astrology';
 import { CONTENT } from '@/lib/content';
@@ -381,6 +382,12 @@ export default function ReadingPage() {
               </div>
             </div>
           </div>
+          <SavedDates
+            currentMm={mm}
+            currentDd={dd}
+            currentYyyy={yyyy}
+            onSelect={(m, d, y) => { setMm(m); setDd(d); setYyyy(y); tryCalculate(m, d, y); }}
+          />
         </div>
       </div>
 

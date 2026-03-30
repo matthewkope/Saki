@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/components/AuthProvider';
 import { calcScore, getScoreRelation } from '@/lib/compatibility';
-import { getEasternAnimal } from '@/lib/astrology';
 
 const LP_ORDER = ['1','3','4','5','6','7','8','9','11','22','28','33','33/6'];
 
@@ -113,7 +112,7 @@ export default function LocationsPage() {
 
     const visible = useMemo(() => {
         const filtered = locations.filter(l => {
-            if (search && !l.name.toLowerCase().includes(search.toLowerCase())) return false;
+            if (search && !l.name.toLowerCase().startsWith(search.toLowerCase())) return false;
             if (filterType.length > 0 && !filterType.includes(l.type)) return false;
             if (filterLP.length > 0 && !filterLP.includes(l.life_path)) return false;
             if (filterEast.length > 0 && !filterEast.includes(l.eastern_zodiac)) return false;

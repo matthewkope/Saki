@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/components/AuthProvider';
@@ -84,8 +84,14 @@ export default function ClothingPage() {
     const [filterEast, setFilterEast] = useState<string[]>([]);
     const [filterWest, setFilterWest] = useState<string[]>([]);
     const [filterOpen, setFilterOpen] = useState(false);
+    const [searchInput, setSearchInput] = useState('');
     const [search, setSearch] = useState('');
     const [scoreSort, setScoreSort] = useState<'asc' | 'desc'>('desc');
+
+    useEffect(() => {
+        const t = setTimeout(() => setSearch(searchInput), 200);
+        return () => clearTimeout(t);
+    }, [searchInput]);
 
     useEffect(() => {
         if (authLoading || !session) return;
@@ -98,16 +104,31 @@ export default function ClothingPage() {
     }, [session, authLoading]);
 
     useEffect(() => {
-        supabase.from('clothing').select('*').order('name').then(({ data, error }) => {
+        supabase.from('clothing').select('id,name,country,founded_month,founded_day,founded_year,life_path,eastern_zodiac,western_zodiac,image_url').order('name').then(({ data, error }) => {
             if (error) setError('Failed to load brands.');
             else setBrands(data || []);
             setLoading(false);
         });
     }, []);
 
+    const scores = useMemo(() => {
+        const map = new Map<number, number>();
+        if (!userBirth) return map;
+        for (const b of brands) {
+            if (b.founded_month && b.founded_day && b.founded_year) {
+                map.set(b.id, calcScore(
+                    { month: userBirth.month, day: userBirth.day, year: userBirth.year },
+                    { month: b.founded_month, day: b.founded_day, year: b.founded_year }
+                ).score);
+            }
+        }
+        return map;
+    }, [brands, userBirth]);
+
     const visible = useMemo(() => {
+        const sq = search.toLowerCase();
         const filtered = brands.filter(b => {
-            if (search && !b.name.toLowerCase().includes(search.toLowerCase())) return false;
+            if (sq && !b.name.toLowerCase().startsWith(sq)) return false;
             if (filterLP.length > 0 && !filterLP.includes(b.life_path.split('/')[0])) return false;
             if (filterEast.length > 0 && !filterEast.includes(b.eastern_zodiac)) return false;
             if (filterWest.length > 0 && !filterWest.includes(b.western_zodiac)) return false;
@@ -115,16 +136,28 @@ export default function ClothingPage() {
         });
         if (!userBirth) return filtered;
         return [...filtered].sort((a, b) => {
-            const scoreOf = (br: ClothingBrand) => (br.founded_month && br.founded_day && br.founded_year)
-                ? calcScore({ month: userBirth.month, day: userBirth.day, year: userBirth.year }, { month: br.founded_month, day: br.founded_day, year: br.founded_year }).score
-                : -1;
-            const sa = scoreOf(a), sb = scoreOf(b);
+            const sa = scores.get(a.id) ?? -1;
+            const sb = scores.get(b.id) ?? -1;
             if (sa === -1 && sb === -1) return 0;
             if (sa === -1) return 1;
             if (sb === -1) return -1;
             return scoreSort === 'desc' ? sb - sa : sa - sb;
         });
-    }, [brands, search, filterLP, filterEast, filterWest, userBirth, scoreSort]);
+    }, [brands, search, filterLP, filterEast, filterWest, scores, scoreSort]);
+
+    const [rowLimit, setRowLimit] = useState(25);
+    const sentinelRef = useRef<HTMLDivElement>(null);
+    useEffect(() => { setRowLimit(50); }, [visible]);
+    useEffect(() => {
+        const el = sentinelRef.current;
+        if (!el) return;
+        const obs = new IntersectionObserver(
+            entries => { if (entries[0].isIntersecting) setRowLimit(r => r + 50); },
+            { rootMargin: '200px' }
+        );
+        obs.observe(el);
+        return () => obs.disconnect();
+    }, [visible]);
 
     const totalActive = filterLP.length + filterEast.length + filterWest.length;
     const clearAll = () => { setFilterLP([]); setFilterEast([]); setFilterWest([]); };
@@ -158,8 +191,8 @@ export default function ClothingPage() {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '32px' }}>
                 <input
-                    value={search}
-                    onChange={e => setSearch(e.target.value)}
+                    value={searchInput}
+                    onChange={e => setSearchInput(e.target.value)}
                     placeholder="Search by brand name..."
                     style={{ padding: '12px 16px', background: '#0a0a0a', border: '1px solid #2a2a2a', color: '#ccc', borderRadius: '10px', fontSize: '0.95rem', outline: 'none', width: '100%', boxSizing: 'border-box' }}
                 />
@@ -248,13 +281,13 @@ export default function ClothingPage() {
                         ))}
                     </div>
 
-                    {visible.map((b, i) => (
+                    {visible.slice(0, rowLimit).map((b, i) => (
                         <div key={b.id}
                             onClick={() => router.push(`/clothing/${b.id}`)}
                             style={{
                                 display: 'grid', gridTemplateColumns: `2fr 1fr 1fr 1fr${userBirth ? ' 0.6fr' : ''}${session ? ' 32px' : ''}`,
                                 padding: '16px 20px', cursor: 'pointer',
-                                borderBottom: i < visible.length - 1 ? '1px solid rgba(255,255,255,0.04)' : 'none',
+                                borderBottom: i < Math.min(rowLimit, visible.length) - 1 ? '1px solid rgba(255,255,255,0.04)' : 'none',
                                 background: 'rgba(10,10,10,0.5)', transition: 'background 0.12s',
                             }}
                             onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,128,160,0.05)')}
@@ -263,7 +296,7 @@ export default function ClothingPage() {
                             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                                 <div style={{ width: '38px', height: '38px', borderRadius: '8px', overflow: 'hidden', background: '#fff', flexShrink: 0, border: '1px solid #222' }}>
                                     {b.image_url
-                                        ? <img src={b.image_url} alt={b.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                        ? <img src={b.image_url} alt={b.name} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                         : <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#333', fontSize: '1rem' }}>✦</div>
                                     }
                                 </div>
@@ -283,12 +316,8 @@ export default function ClothingPage() {
 
                             <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                                 <span style={{ color: 'var(--gold)', fontSize: '0.9rem' }}>{b.eastern_zodiac}</span>
-                                {userBirth && b.founded_month && b.founded_day && b.founded_year && (() => {
-                                    const result = calcScore(
-                                        { month: userBirth.month, day: userBirth.day, year: userBirth.year },
-                                        { month: b.founded_month, day: b.founded_day, year: b.founded_year }
-                                    );
-                                    const rel = getScoreRelation(result.score);
+                                {userBirth && scores.has(b.id) && (() => {
+                                    const rel = getScoreRelation(scores.get(b.id)!);
                                     return <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: RELATION_DOT[rel], flexShrink: 0, display: 'inline-block' }} title={rel} />;
                                 })()}
                             </div>
@@ -297,16 +326,13 @@ export default function ClothingPage() {
                                 <span style={{ color: '#a78bfa', fontSize: '0.9rem' }}>{b.western_zodiac}</span>
                             </div>
 
-                            {userBirth && b.founded_month && b.founded_day && b.founded_year && (() => {
-                                const result = calcScore(
-                                    { month: userBirth.month, day: userBirth.day, year: userBirth.year },
-                                    { month: b.founded_month, day: b.founded_day, year: b.founded_year }
-                                );
-                                const rel = getScoreRelation(result.score);
+                            {userBirth && scores.has(b.id) && (() => {
+                                const sc = scores.get(b.id)!;
+                                const rel = getScoreRelation(sc);
                                 const color = rel === 'friendly' ? 'var(--teal)' : rel === 'enemy' ? 'var(--rose)' : 'var(--gold)';
                                 return (
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
-                                        <span style={{ color, fontSize: '0.9rem', fontWeight: 600 }}>{Math.round(result.score)}</span>
+                                        <span style={{ color, fontSize: '0.9rem', fontWeight: 600 }}>{Math.round(sc)}</span>
                                     </div>
                                 );
                             })()}
@@ -319,6 +345,7 @@ export default function ClothingPage() {
                             )}
                         </div>
                     ))}
+                    {visible.length > rowLimit && <div ref={sentinelRef} style={{ height: '1px' }} />}
                 </div>
             ) : (
                 <div style={{ textAlign: 'center', padding: '60px', color: '#555', border: '1px dashed #2a2a2a', borderRadius: '14px' }}>

@@ -4,10 +4,11 @@ import { useState, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/components/AuthProvider';
-import { getEastRelation, calcScore, getScoreRelation } from '@/lib/compatibility';
-import { getEasternAnimal } from '@/lib/astrology';
+import { calcScore, getScoreRelation } from '@/lib/compatibility';
 
 const LP_ORDER = ['1','3','4','5','6','7','8','9','11','22','28','33','33/6'];
+
+const TYPE_OPTIONS = ['Athlete', 'Actor', 'Musician', 'Comedian', 'Politician', 'Business', 'Royalty', 'Influencer', 'Religion', 'Occult', 'Other'];
 
 const EAST_TRIADS_FILTER = [
     { label: 'Rat · Dragon · Monkey', animals: ['Rat', 'Dragon', 'Monkey'] },
@@ -26,6 +27,7 @@ const WEST_TRIADS_FILTER = [
 interface Celebrity {
     id: number;
     name: string;
+    type: string | null;
     life_path: string;
     eastern_zodiac: string;
     western_zodiac: string;
@@ -75,12 +77,12 @@ export default function CelebritiesPage() {
     const router = useRouter();
     const { session, loading: authLoading } = useAuth();
     const [celebrities, setCelebrities] = useState<Celebrity[]>([]);
-    const [userAnimal, setUserAnimal] = useState<string | null>(null);
     const [userBirth, setUserBirth] = useState<{ month: number; day: number; year: number } | null>(null);
     const [savedIds, setSavedIds] = useState<Set<number>>(new Set());
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
+    const [filterType, setFilterType] = useState<string[]>([]);
     const [filterLP, setFilterLP] = useState<string[]>([]);
     const [filterEast, setFilterEast] = useState<string[]>([]);
     const [filterWest, setFilterWest] = useState<string[]>([]);
@@ -93,7 +95,6 @@ export default function CelebritiesPage() {
         supabase.from('profiles').select('birth_month, birth_day, birth_year').eq('id', session.user.id).single()
             .then(({ data }) => {
                 if (data?.birth_month) {
-                    setUserAnimal(getEasternAnimal(data.birth_month, data.birth_day, data.birth_year));
                     setUserBirth({ month: data.birth_month, day: data.birth_day, year: data.birth_year });
                 }
             });
@@ -102,7 +103,7 @@ export default function CelebritiesPage() {
     }, [session, authLoading]);
 
     useEffect(() => {
-        supabase.from('celebrities').select('*').order('name').then(({ data, error }) => {
+        supabase.from('celebrities').select('id,name,type,life_path,eastern_zodiac,western_zodiac,image_url,month,day,year').order('name').then(({ data, error }) => {
             if (error) setError('Failed to load celebrities.');
             else setCelebrities(data || []);
             setLoading(false);
@@ -113,7 +114,8 @@ export default function CelebritiesPage() {
 
     const visible = useMemo(() => {
         const filtered = celebrities.filter(c => {
-            if (search && !c.name.toLowerCase().includes(search.toLowerCase())) return false;
+            if (search && !c.name.toLowerCase().startsWith(search.toLowerCase())) return false;
+            if (filterType.length > 0 && !filterType.includes(c.type ?? '')) return false;
             if (filterLP.length > 0 && !filterLP.includes(c.life_path)) return false;
             if (filterEast.length > 0 && !filterEast.includes(c.eastern_zodiac)) return false;
             if (filterWest.length > 0 && !filterWest.includes(c.western_zodiac)) return false;
@@ -130,10 +132,10 @@ export default function CelebritiesPage() {
             if (sb === -1) return -1;
             return scoreSort === 'desc' ? sb - sa : sa - sb;
         });
-    }, [celebrities, search, filterLP, filterEast, filterWest, userBirth, scoreSort]);
+    }, [celebrities, search, filterType, filterLP, filterEast, filterWest, userBirth, scoreSort]);
 
-    const totalActive = filterLP.length + filterEast.length + filterWest.length;
-    const clearAll = () => { setFilterLP([]); setFilterEast([]); setFilterWest([]); };
+    const totalActive = filterType.length + filterLP.length + filterEast.length + filterWest.length;
+    const clearAll = () => { setFilterType([]); setFilterLP([]); setFilterEast([]); setFilterWest([]); };
 
     async function toggleSave(e: React.MouseEvent, c: Celebrity) {
         e.stopPropagation();
@@ -192,6 +194,9 @@ export default function CelebritiesPage() {
                     {filterOpen && (
                         <div style={{ padding: '4px 18px 18px', display: 'flex', flexDirection: 'column', gap: '18px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
                             <div style={{ height: '2px' }} />
+
+                            {/* Type */}
+                            <PillGroup label="Type" options={TYPE_OPTIONS} active={filterType} onToggle={v => setFilterType(toggle(filterType, v))} color="var(--teal)" />
 
                             {/* Life Path */}
                             <PillGroup label="Life Path" options={lpOptions} active={filterLP} onToggle={v => setFilterLP(toggle(filterLP, v))} />
@@ -252,8 +257,8 @@ export default function CelebritiesPage() {
             {visible.length > 0 ? (
                 <div style={{ borderRadius: '14px', border: '1px solid rgba(255,255,255,0.07)', overflow: 'hidden' }}>
                     {/* Table header */}
-                    <div style={{ display: 'grid', gridTemplateColumns: `2fr 1fr 1fr 1fr${userBirth ? ' 0.6fr' : ''}${session ? ' 32px' : ''}`, padding: '12px 20px', background: 'rgba(255,255,255,0.03)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-                        {['Name', 'Life Path', 'Eastern', 'Western', ...(userBirth ? ['Score'] : []), ...(session ? [''] : [])].map(h => (
+                    <div style={{ display: 'grid', gridTemplateColumns: `2fr 0.7fr 1fr 1fr 1fr${userBirth ? ' 0.6fr' : ''}${session ? ' 32px' : ''}`, padding: '12px 20px', background: 'rgba(255,255,255,0.03)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+                        {['Name', 'Type', 'Life Path', 'Eastern', 'Western', ...(userBirth ? ['Score'] : []), ...(session ? [''] : [])].map(h => (
                             h === 'Score' ? (
                                 <button key={h} onClick={() => setScoreSort(s => s === 'desc' ? 'asc' : 'desc')} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.72rem', color: '#888', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
                                     Score <span style={{ fontSize: '0.65rem' }}>{scoreSort === 'desc' ? '↓' : '↑'}</span>
@@ -269,7 +274,7 @@ export default function CelebritiesPage() {
                         <div key={c.id}
                             onClick={() => router.push(`/celebrities/${c.id}`)}
                             style={{
-                                display: 'grid', gridTemplateColumns: `2fr 1fr 1fr 1fr${userBirth ? ' 0.6fr' : ''}${session ? ' 32px' : ''}`,
+                                display: 'grid', gridTemplateColumns: `2fr 0.7fr 1fr 1fr 1fr${userBirth ? ' 0.6fr' : ''}${session ? ' 32px' : ''}`,
                                 padding: '16px 20px', cursor: 'pointer',
                                 borderBottom: i < visible.length - 1 ? '1px solid rgba(255,255,255,0.04)' : 'none',
                                 background: 'rgba(10,10,10,0.5)', transition: 'background 0.12s',
@@ -291,6 +296,11 @@ export default function CelebritiesPage() {
                                         <div style={{ color: '#555', fontSize: '0.78rem', marginTop: '2px' }}>{c.month}/{c.day}/{c.year}</div>
                                     )}
                                 </div>
+                            </div>
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                {c.type && (
+                                    <span style={{ fontSize: '0.72rem', color: 'var(--teal,#60d0c0)', background: 'rgba(96,208,192,0.08)', border: '1px solid rgba(96,208,192,0.2)', borderRadius: '6px', padding: '2px 8px', whiteSpace: 'nowrap' }}>{c.type}</span>
+                                )}
                             </div>
                             <div style={{ display: 'flex', alignItems: 'center' }}>
                                 <span style={{ color: 'var(--accent,#60d0c0)', fontSize: '0.9rem', fontWeight: 500 }}>LP {c.life_path}</span>
