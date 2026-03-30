@@ -265,6 +265,7 @@ TYPES = {
     'Lewis Hamilton':        'Athlete',
 
     # Additional Actors
+    'Jon-Erik Hexum':        'Actor',
     'Al Pacino':             'Actor',
     'Robert De Niro':        'Actor',
     'Anthony Hopkins':       'Actor',

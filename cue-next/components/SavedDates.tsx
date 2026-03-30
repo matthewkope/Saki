@@ -42,7 +42,6 @@ export default function SavedDates({ currentMm, currentDd, currentYyyy, onSelect
 
   return (
     <div style={{ marginTop: '10px', textAlign: 'center' }}>
-      {/* Toggle row */}
       <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', alignItems: 'center' }}>
         {saved.length > 0 && (
           <button onClick={() => { setOpen(o => !o); setAdding(false); }} style={ghostBtnStyle}>
@@ -54,7 +53,6 @@ export default function SavedDates({ currentMm, currentDd, currentYyyy, onSelect
         </button>
       </div>
 
-      {/* Add form */}
       {adding && (
         <div style={{ display: 'flex', gap: '6px', alignItems: 'center', justifyContent: 'center', marginTop: '8px' }}>
           <input
@@ -66,10 +64,10 @@ export default function SavedDates({ currentMm, currentDd, currentYyyy, onSelect
             style={nameInputStyle}
           />
           <button onClick={saveDate} style={addBtnStyle}>Save</button>
+          <button onClick={() => setAdding(false)} style={cancelBtnStyle}>×</button>
         </div>
       )}
 
-      {/* Saved list */}
       {open && saved.length > 0 && (
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'center', justifyContent: 'center', marginTop: '10px' }}>
           {saved.map((s, i) => (
@@ -118,6 +116,9 @@ const ghostBtnStyle: React.CSSProperties = {
   background: 'none', border: '1px solid var(--border)',
   color: 'var(--text-muted)', borderRadius: '20px', padding: '4px 12px',
   fontSize: '0.75rem', cursor: 'pointer',
+};
+const cancelBtnStyle: React.CSSProperties = {
+  background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '1rem',
 };
 const nameInputStyle: React.CSSProperties = {
   background: 'var(--surface-2)', border: '1px solid var(--border)',

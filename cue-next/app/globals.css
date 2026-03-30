@@ -546,7 +546,7 @@ body::before {
    ============================================================ */
 .date-inputs-row {
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: center;
   gap: 20px;
   width: 100%;

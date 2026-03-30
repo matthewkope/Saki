@@ -267,7 +267,7 @@ function CompatibilityCalc() {
             currentMm={p1mm}
             currentDd={p1dd}
             currentYyyy={p1yyyy}
-            onSelect={(m, d, y) => { setP1mm(m); setP1dd(d); setP1yyyy(y); tryCalc(m, d, p1yyyy, p2mm, p2dd, p2yyyy); }}
+            onSelect={(m, d, y) => { setP1mm(m); setP1dd(d); setP1yyyy(y); tryCalc(m, d, y, p2mm, p2dd, p2yyyy); }}
             onSelectP2={(m, d, y) => { setP2mm(m); setP2dd(d); setP2yyyy(y); tryCalc(p1mm, p1dd, p1yyyy, m, d, y); }}
           />
         </div>
