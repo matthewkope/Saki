@@ -328,10 +328,10 @@ export default function ReadingPage() {
       {/* Sticky Input */}
       <div className="input-section">
         <div className="input-inner">
-          <div className="app-title">Saki</div>
-          <div className="app-subtitle">Personal Reading</div>
+          <div className="app-title">Personal Reading</div>
           <div className="date-group">
             <div className="date-label">Date of Birth</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
             <div className="date-boxes">
               <div className="date-field">
                 <label>MM</label>
@@ -381,13 +381,14 @@ export default function ReadingPage() {
                 />
               </div>
             </div>
+            <SavedDates
+              currentMm={mm}
+              currentDd={dd}
+              currentYyyy={yyyy}
+              onSelect={(m, d, y) => { setMm(m); setDd(d); setYyyy(y); tryCalculate(m, d, y); }}
+            />
+            </div>
           </div>
-          <SavedDates
-            currentMm={mm}
-            currentDd={dd}
-            currentYyyy={yyyy}
-            onSelect={(m, d, y) => { setMm(m); setDd(d); setYyyy(y); tryCalculate(m, d, y); }}
-          />
         </div>
       </div>
 

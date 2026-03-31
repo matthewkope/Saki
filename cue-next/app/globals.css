@@ -550,12 +550,12 @@ body::before {
   justify-content: center;
   gap: 20px;
   width: 100%;
-  flex-wrap: wrap;
 }
 
 .person-input-group {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 8px;
 }
 

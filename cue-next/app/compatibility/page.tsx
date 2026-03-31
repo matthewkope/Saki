@@ -142,13 +142,15 @@ interface DateInputGroupProps {
   onMmKey: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onDdKey: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onYyyyKey: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  endSlot?: React.ReactNode;
 }
 
-function DateInputGroup({ label, mm, dd, yyyy, isP2, mmRef, ddRef, yyyyRef, onMm, onDd, onYyyy, onMmKey, onDdKey, onYyyyKey }: DateInputGroupProps) {
+function DateInputGroup({ label, mm, dd, yyyy, isP2, mmRef, ddRef, yyyyRef, onMm, onDd, onYyyy, onMmKey, onDdKey, onYyyyKey, endSlot }: DateInputGroupProps) {
   const p2cls = isP2 ? ' p2' : '';
   return (
     <div className="person-input-group">
       <div className="person-input-label">{label}</div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
       <div className="date-boxes">
         <div className="date-field">
           <label>MM</label>
@@ -176,6 +178,8 @@ function DateInputGroup({ label, mm, dd, yyyy, isP2, mmRef, ddRef, yyyyRef, onMm
             onKeyDown={onYyyyKey}
             onFocus={(e) => setTimeout(() => e.target.select(), 0)} />
         </div>
+      </div>
+      {endSlot}
       </div>
     </div>
   );
@@ -250,8 +254,14 @@ function CompatibilityCalc() {
               onMmKey={() => {}}
               onDdKey={(e) => { if (e.key === 'Backspace' && p1dd === '') { e.preventDefault(); p1mmRef.current?.focus(); } }}
               onYyyyKey={(e) => { if (e.key === 'Backspace' && p1yyyy === '') { e.preventDefault(); p1ddRef.current?.focus(); } }}
+              endSlot={
+                <SavedDates
+                  currentMm={p1mm} currentDd={p1dd} currentYyyy={p1yyyy}
+                  onSelect={(m, d, y) => { setP1mm(m); setP1dd(d); setP1yyyy(y); tryCalc(m, d, y, p2mm, p2dd, p2yyyy); }}
+                />
+              }
             />
-            <div className="vs-divider"><span>&amp;</span></div>
+
             <DateInputGroup
               label="Person 2 — Birthday"
               mm={p2mm} dd={p2dd} yyyy={p2yyyy}
@@ -261,15 +271,14 @@ function CompatibilityCalc() {
               onMmKey={(e) => { if (e.key === 'Backspace' && p2mm === '') { e.preventDefault(); p1yyyyRef.current?.focus(); } }}
               onDdKey={(e) => { if (e.key === 'Backspace' && p2dd === '') { e.preventDefault(); p2mmRef.current?.focus(); } }}
               onYyyyKey={(e) => { if (e.key === 'Backspace' && p2yyyy === '') { e.preventDefault(); p2ddRef.current?.focus(); } }}
+              endSlot={
+                <SavedDates
+                  currentMm={p2mm} currentDd={p2dd} currentYyyy={p2yyyy}
+                  onSelect={(m, d, y) => { setP2mm(m); setP2dd(d); setP2yyyy(y); tryCalc(p1mm, p1dd, p1yyyy, m, d, y); }}
+                />
+              }
             />
           </div>
-          <SavedDates
-            currentMm={p1mm}
-            currentDd={p1dd}
-            currentYyyy={p1yyyy}
-            onSelect={(m, d, y) => { setP1mm(m); setP1dd(d); setP1yyyy(y); tryCalc(m, d, y, p2mm, p2dd, p2yyyy); }}
-            onSelectP2={(m, d, y) => { setP2mm(m); setP2dd(d); setP2yyyy(y); tryCalc(p1mm, p1dd, p1yyyy, m, d, y); }}
-          />
         </div>
       </div>
 

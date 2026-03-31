@@ -333,7 +333,7 @@ export default function ProfilePage() {
           The Cue Chrome extension lets you check compatibility directly from Facebook profiles. To install the beta:
         </p>
         <ol style={{ color: 'var(--text-dim)', fontSize: '0.85rem', lineHeight: 1.9, margin: 0, paddingLeft: '20px' }}>
-          <li>Download the extension files from the link below</li>
+          <li>Download the extension files from <a href="https://github.com/matthewkope/Saki/tree/main/fb-compatibility-extension" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent)' }}>this GitHub link</a></li>
           <li>Open Chrome and go to <span style={{ color: 'var(--accent)', fontFamily: 'monospace' }}>chrome://extensions</span></li>
           <li>Enable <strong style={{ color: 'var(--text)' }}>Developer mode</strong> (top right toggle)</li>
           <li>Click <strong style={{ color: 'var(--text)' }}>Load unpacked</strong> and select the downloaded folder</li>
