@@ -1,6 +1,24 @@
 node_modules/
 .next/
 .env
+.env.*
 .DS_Store
 *.dmg
 supabase/.temp/
+
+# Python Virtual Environments
+.venv/
+mitm_env/
+__pycache__/
+
+# Cue API Data Dumps (Privacy)
+*.mitm
+traffic.mitm
+all_raw_json_dumps.json
+
+# Intercepted Unnamed Data 
+new folder/
+intercepted_data/
+
+# Mac OS
+.DS_Store
