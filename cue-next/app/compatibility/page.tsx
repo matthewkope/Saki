@@ -6,6 +6,7 @@ import SavedDates from '@/components/SavedDates';
 
 import { calcLP, calcSLP } from '@/lib/numerology';
 import { getEasternAnimalWithIndex, getWesternSignWithIndex } from '@/lib/astrology';
+import { useIntermediaryNumbers, fmtLP } from '@/lib/useIntermediaryNumbers';
 
 // ============================================================
 // DATA TABLES
@@ -197,6 +198,7 @@ function CompatibilityCalc() {
   const [p2dd, setP2dd] = useState(params.get('p2d') || '');
   const [p2yyyy, setP2yyyy] = useState(params.get('p2y') || '');
   const [result, setResult] = useState<ScoreResult | null>(null);
+  const [showIntermediary] = useIntermediaryNumbers();
 
   const p1mmRef = useRef<HTMLInputElement>(null);
   const p1ddRef = useRef<HTMLInputElement>(null);
@@ -317,10 +319,10 @@ function CompatibilityCalc() {
               ].map((p) => (
                 <div key={p.label} className="person-card">
                   <div className="person-label">{p.label}</div>
-                  <div className="person-lp">{p.lp.display}</div>
+                  <div className="person-lp">{fmtLP(p.lp.lp, p.lp.display, showIntermediary)}</div>
                   <div className="person-lp-label">Life Path</div>
                   <div className="person-details">
-                    <div className="detail-row"><span className="detail-key">Intermediary</span><span className="detail-val">{p.lp.raw}</span></div>
+                    {showIntermediary && <div className="detail-row"><span className="detail-key">Intermediary</span><span className="detail-val">{p.lp.raw}</span></div>}
                     <div className="detail-row"><span className="detail-key">SLP</span><span className="detail-val">{p.slp}</span></div>
                     <div className="detail-row"><span className="detail-key">Eastern Zodiac</span><span className="detail-val">{p.east.animal}</span></div>
                     <div className="detail-row"><span className="detail-key">Western Zodiac</span><span className="detail-val">{p.west.sign}</span></div>
@@ -335,7 +337,7 @@ function CompatibilityCalc() {
               <div className="breakdown-grid">
                 <div className="breakdown-card">
                   <div className="bk-label">Life Path</div>
-                  <div className="bk-pair">{result.lp1.display} ↔ {result.lp2.display}</div>
+                  <div className="bk-pair">{fmtLP(result.lp1.lp, result.lp1.display, showIntermediary)} ↔ {fmtLP(result.lp2.lp, result.lp2.display, showIntermediary)}</div>
                   <div className="bk-value" style={{ color: 'var(--accent)' }}>{result.lpPct}%</div>
                   <div className="bk-contrib">× 0.618 = {result.lpContrib.toFixed(2)} pts</div>
                 </div>

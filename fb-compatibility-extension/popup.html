@@ -2,17 +2,56 @@
 <html>
 <head>
     <style>
-        body { width: 300px; padding: 15px; font-family: sans-serif; }
-        button { width: 100%; padding: 10px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
-        button:hover { background: #0056b3; }
-        .error { color: red; margin-top: 10px; font-size: 14px; }
-        .info { margin-bottom: 15px; font-size: 14px; color: #555; }
+        body { width: 340px; padding: 16px; font-family: sans-serif; background: #f6f8fb; color: #1c2333; }
+        h3 { margin: 0 0 14px; font-size: 18px; }
+        .card { background: white; border-radius: 12px; padding: 14px; border: 1px solid #dde3ee; margin-bottom: 12px; }
+        .info { margin: 0 0 12px; font-size: 13px; color: #5e6a84; line-height: 1.45; }
+        .label { display: block; font-size: 12px; font-weight: 600; color: #44506a; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.04em; }
+        .date-row { display: grid; grid-template-columns: 1fr 1fr 1.4fr; gap: 8px; }
+        input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px 11px;
+            border: 1px solid #cad3e3;
+            border-radius: 8px;
+            font-size: 14px;
+            background: #fff;
+        }
+        .primary-btn, .secondary-btn {
+            width: 100%;
+            padding: 11px 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .primary-btn { background: #0a66ff; color: white; margin-bottom: 8px; }
+        .primary-btn:hover { background: #0056d6; }
+        .secondary-btn { background: #e9eef9; color: #16408b; }
+        .secondary-btn:hover { background: #dbe6fb; }
+        .error { color: #c62828; margin-top: 10px; font-size: 13px; }
+        .success { color: #1b7f4d; margin-top: 10px; font-size: 13px; }
+        .muted { color: #6c7892; font-size: 12px; margin-top: 8px; line-height: 1.45; }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
-    <h3>Birthday Scraper</h3>
-    <div class="info">Navigate to Facebook Birthdays page to begin.</div>
-    <button id="scrapeBtn">Scrape & Calculate!</button>
+    <h3>Facebook Compatibility</h3>
+
+    <div class="card">
+        <div class="label">Reference Birthday</div>
+        <div class="info">Enter the date you want to compare against the Facebook profile you scan.</div>
+        <div class="date-row">
+            <input id="refMonth" type="text" inputmode="numeric" maxlength="2" placeholder="MM" />
+            <input id="refDay" type="text" inputmode="numeric" maxlength="2" placeholder="DD" />
+            <input id="refYear" type="text" inputmode="numeric" maxlength="4" placeholder="YYYY" />
+        </div>
+        <div class="muted" id="pageHint">Open a Facebook profile to scan it.</div>
+    </div>
+
+    <button id="profileBtn" class="primary-btn">Scan Current Profile</button>
+    <button id="scrapeBtn" class="secondary-btn">Scrape Friends Birthdays</button>
     <div id="status"></div>
     <script src="env.config.js"></script>
     <script src="popup.js"></script>

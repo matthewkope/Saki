@@ -3,8 +3,11 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import SavedDates from '@/components/SavedDates';
 import { calcLP, calcSLP, calcPersonalYear, calcPersonalMonth } from '@/lib/numerology';
-import { getEasternAnimal, getWesternSign } from '@/lib/astrology';
+import { getEasternAnimal, getEasternElement, getWesternSign } from '@/lib/astrology';
 import { CONTENT } from '@/lib/content';
+import { VEDIC, getVedicSign } from '@/lib/vedic';
+import { CELTIC, getCelticSign, CELTIC_SYMBOLS } from '@/lib/celtic';
+import { useIntermediaryNumbers, fmtLP } from '@/lib/useIntermediaryNumbers';
 
 // ============================================================
 // CONSTANTS
@@ -63,14 +66,17 @@ interface ReadingData {
   slp: number;
   lpDisplay: string;
   animal: string;
+  animalElement: string;
   sign: string;
+  vedicSign: string;
+  celticSign: string;
   py: number;
   pyDisplay: string;
   pm: number;
   pmDisplay: string;
 }
 
-type PanelType = 'numerology' | 'zodiac' | 'western' | 'careers' | 'personalYear' | 'timeline';
+type PanelType = 'numerology' | 'zodiac' | 'western' | 'careers' | 'personalYear' | 'timeline' | 'vedic' | 'celtic';
 
 // ============================================================
 // MARKDOWN RENDERER
@@ -84,29 +90,79 @@ function renderMarkdown(text: string): string {
     return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
+  function fmt(str: string): string {
+    return esc(str).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  }
+
   for (const line of lines) {
     if (line.startsWith('### ')) {
       if (inList) { html += '</ul>'; inList = false; }
-      html += '<h3>' + esc(line.slice(4)) + '</h3>';
+      html += '<h3>' + fmt(line.slice(4)) + '</h3>';
     } else if (line.startsWith('## ')) {
       if (inList) { html += '</ul>'; inList = false; }
-      html += '<h2>' + esc(line.slice(3)) + '</h2>';
+      html += '<h2>' + fmt(line.slice(3)) + '</h2>';
     } else if (line.startsWith('# ')) {
       if (inList) { html += '</ul>'; inList = false; }
-      html += '<h1>' + esc(line.slice(2)) + '</h1>';
+      html += '<h1>' + fmt(line.slice(2)) + '</h1>';
     } else if (line.startsWith('- ') || line.startsWith('* ')) {
       if (!inList) { html += '<ul>'; inList = true; }
-      html += '<li>' + esc(line.slice(2)) + '</li>';
+      html += '<li>' + fmt(line.slice(2)) + '</li>';
+    } else if (line.trim() === '---') {
+      if (inList) { html += '</ul>'; inList = false; }
+      html += '<hr style="border:none;border-top:1px solid var(--border-light);margin:20px 0">';
     } else if (line.trim() === '') {
       if (inList) { html += '</ul>'; inList = false; }
     } else {
       if (inList) { html += '</ul>'; inList = false; }
-      html += '<p>' + esc(line) + '</p>';
+      html += '<p>' + fmt(line) + '</p>';
     }
   }
 
   if (inList) html += '</ul>';
   return html;
+}
+
+// ============================================================
+// NUMEROLOGY TAB CONFIG
+// ============================================================
+const NUM_TABS = ['lp', 'characteristics', 'strengths', 'compatibility', 'careers'] as const;
+type NumTab = typeof NUM_TABS[number];
+
+const TAB_EMOJI: Record<NumTab, string> = {
+  lp: '🔮',
+  characteristics: '✨',
+  strengths: '⚡',
+  compatibility: '💞',
+  careers: '💼',
+};
+const TAB_LABEL: Record<NumTab, string> = {
+  lp: 'Life Path',
+  characteristics: 'Characteristics',
+  strengths: 'Strengths',
+  compatibility: 'Compatibility',
+  careers: 'Careers',
+};
+const TAB_KEYWORDS: Record<NumTab, string[]> = {
+  lp: ['primary', 'secondary'],
+  characteristics: ['characteristics'],
+  strengths: ['strengths'],
+  compatibility: ['friendly', 'neutral', 'enemy'],
+  careers: [],
+};
+
+function pickSections(markdown: string, keywords: string[]): string {
+  const blocks = markdown.split(/^(?=## )/m);
+  const result: string[] = [];
+  for (const block of blocks) {
+    const h2 = block.match(/^## (.+)/);
+    if (!h2) {
+      if (keywords.length === 0) result.push(block.trim());
+    } else {
+      const header = h2[1].toLowerCase();
+      if (keywords.some(k => header.includes(k))) result.push(block.trim());
+    }
+  }
+  return result.join('\n\n') || '# Coming Soon\n\nThis section is on its way.';
 }
 
 // ============================================================
@@ -118,10 +174,15 @@ export default function ReadingPage() {
   const [yyyy, setYyyy] = useState('');
   const [reading, setReading] = useState<ReadingData | null>(null);
   const [error, setError] = useState('');
+  const [showIntermediary] = useIntermediaryNumbers();
   const [panelOpen, setPanelOpen] = useState(false);
   const [panelEmoji, setPanelEmoji] = useState('');
   const [panelTitle, setPanelTitle] = useState('');
   const [panelHtml, setPanelHtml] = useState('');
+  const [isNumPanel, setIsNumPanel] = useState(false);
+  const [numTab, setNumTab] = useState<NumTab>('lp');
+  const [numTabHtml, setNumTabHtml] = useState<Record<string, string>>({});
+  const [numLpKey, setNumLpKey] = useState<number>(1);
 
   const mmRef = useRef<HTMLInputElement>(null);
   const ddRef = useRef<HTMLInputElement>(null);
@@ -148,7 +209,10 @@ export default function ReadingPage() {
     const lpData = calcLP(m, d, y);
     const slp = calcSLP(d);
     const animal = getEasternAnimal(m, d, y);
+    const animalElement = getEasternElement(m, d, y);
     const sign = getWesternSign(m, d);
+    const vedicSign = getVedicSign(m, d);
+    const celticSign = getCelticSign(m, d);
     const pyData = calcPersonalYear(m, d);
     const pmData = calcPersonalMonth(m, d);
 
@@ -158,7 +222,10 @@ export default function ReadingPage() {
       slp,
       lpDisplay: lpData.display,
       animal,
+      animalElement,
       sign,
+      vedicSign,
+      celticSign,
       py: pyData.py,
       pyDisplay: pyData.display,
       pm: pmData.pm,
@@ -214,31 +281,58 @@ export default function ReadingPage() {
     let em: string;
     let label: string;
 
-    if (type === 'numerology') {
-      key = reading.lp;
-      text = (CONTENT.numerology as Record<number, string>)[key] || ('# ' + key + ' Life Path\n\nContent coming soon.');
-      em = '🔮';
-      label = key + ' Life Path';
+    if (type === 'numerology' || type === 'careers') {
+      const lpKey = reading.lp;
+      const fullText = (CONTENT.numerology as Record<number, string>)[lpKey] || '';
+      const careersText = (CONTENT.careers as Record<number, string>)[lpKey] || '# Careers\n\nContent coming soon.';
+      const slpKey = reading.slp;
+      const secondaryCareersText = slpKey !== lpKey ? (CONTENT.careers as Record<number, string>)[slpKey] : null;
+      const fullCareersText = secondaryCareersText
+        ? careersText + '\n\n---\n\n## Secondary Life Path — ' + slpKey + '\n\n' + secondaryCareersText
+        : careersText;
+      const html: Record<string, string> = {
+        lp:             renderMarkdown(pickSections(fullText, TAB_KEYWORDS.lp)),
+        characteristics: renderMarkdown(pickSections(fullText, TAB_KEYWORDS.characteristics)),
+        strengths:      renderMarkdown(pickSections(fullText, TAB_KEYWORDS.strengths)),
+        compatibility:  renderMarkdown(pickSections(fullText, TAB_KEYWORDS.compatibility)),
+        careers:        renderMarkdown(fullCareersText),
+      };
+      const activeTab: NumTab = type === 'careers' ? 'careers' : 'lp';
+      setNumTabHtml(html);
+      setNumLpKey(lpKey);
+      setNumTab(activeTab);
+      setIsNumPanel(true);
+      setPanelEmoji(TAB_EMOJI[activeTab]);
+      setPanelTitle(String(lpKey) + ' · ' + TAB_LABEL[activeTab]);
+      setPanelOpen(true);
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => { if (panelRef.current) panelRef.current.scrollTop = 0; }, 50);
+      return;
     } else if (type === 'zodiac') {
       key = reading.animal;
       text = (CONTENT.zodiac as Record<string, string>)[key] || ('# The ' + key + '\n\nContent coming soon.');
       em = ZODIAC_EMOJIS[key] || '🌙';
-      label = 'The ' + key;
+      label = 'The ' + reading.animalElement + ' ' + key;
     } else if (type === 'western') {
       key = reading.sign;
       text = (CONTENT.western as Record<string, string>)[key] || ('# ' + key + '\n\nContent coming soon.');
       em = WEST_EMOJIS[key] || '✨';
       label = key;
-    } else if (type === 'careers') {
-      key = reading.lp;
-      text = (CONTENT.careers as Record<number, string>)[key] || '# Careers\n\nContent coming soon.';
-      em = '💼';
-      label = key + ' Life Path — Careers';
     } else if (type === 'personalYear') {
       key = reading.py;
       text = (CONTENT.personalYear as Record<number, string>)[key] || '# Personal Year\n\nContent coming soon.';
       em = '🗓️';
       label = 'Personal Year ' + reading.pyDisplay;
+    } else if (type === 'vedic') {
+      key = reading.vedicSign;
+      text = VEDIC[key] || '# Vedic Profile\n\nContent coming soon.';
+      em = 'ॐ';
+      label = 'Vedic · ' + key;
+    } else if (type === 'celtic') {
+      key = reading.celticSign;
+      text = CELTIC[key] || '# Celtic Profile\n\nContent coming soon.';
+      em = CELTIC_SYMBOLS[key] || 'ᚁ';
+      label = 'Celtic · ' + key;
     } else {
       // timeline
       const birthYear = parseInt(yyyy);
@@ -302,12 +396,20 @@ export default function ReadingPage() {
       return;
     }
 
+    setIsNumPanel(false);
     setPanelEmoji(em);
     setPanelTitle(label as string);
     setPanelHtml(renderMarkdown(text));
     setPanelOpen(true);
     document.body.style.overflow = 'hidden';
     setTimeout(() => { if (panelRef.current) panelRef.current.scrollTop = 0; }, 50);
+  }
+
+  function switchNumTab(tab: NumTab) {
+    setNumTab(tab);
+    setPanelEmoji(TAB_EMOJI[tab]);
+    setPanelTitle(String(numLpKey) + ' · ' + TAB_LABEL[tab]);
+    if (panelRef.current) panelRef.current.scrollTop = 0;
   }
 
   function closePanel() {
@@ -317,11 +419,21 @@ export default function ReadingPage() {
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
-      if (e.key === 'Escape') closePanel();
+      if (e.key === 'Escape') { closePanel(); return; }
+      if (panelOpen && isNumPanel) {
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+          e.preventDefault();
+          const idx = NUM_TABS.indexOf(numTab);
+          const next = e.key === 'ArrowRight'
+            ? (idx + 1) % NUM_TABS.length
+            : (idx - 1 + NUM_TABS.length) % NUM_TABS.length;
+          switchNumTab(NUM_TABS[next]);
+        }
+      }
     }
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
-  }, []);
+  }, [panelOpen, isNumPanel, numTab]);
 
   return (
     <>
@@ -402,7 +514,7 @@ export default function ReadingPage() {
           <>
             <div className="reading-card">
               <div className="reading-name-row">
-                <div className="reading-lp">{reading.lpDisplay}</div>
+                <div className="reading-lp">{fmtLP(reading.lp, reading.lpDisplay, showIntermediary)}</div>
                 <div className="reading-lp-label">Life Path</div>
               </div>
               <div className="reading-rows">
@@ -412,7 +524,7 @@ export default function ReadingPage() {
                 </div>
                 <div className="reading-row">
                   <span className="reading-key">Zodiac</span>
-                  <span className="reading-val gold">{ZODIAC_EMOJIS[reading.animal]} {reading.animal}</span>
+                  <span className="reading-val gold">{ZODIAC_EMOJIS[reading.animal]} {reading.animalElement} {reading.animal}</span>
                 </div>
                 <div className="reading-row">
                   <span className="reading-key">Western Astrology</span>
@@ -420,7 +532,23 @@ export default function ReadingPage() {
                 </div>
                 <div className="reading-row">
                   <span className="reading-key">Personal Year</span>
-                  <span className="reading-val" style={{ color: 'var(--gold)' }}>🗓️ {reading.pyDisplay}</span>
+                  <button
+                    type="button"
+                    onClick={() => openPanel('personalYear')}
+                    title="Open Personal Year reading"
+                    className="reading-val"
+                    style={{
+                      color: 'var(--gold)',
+                      background: 'transparent',
+                      border: 'none',
+                      padding: 0,
+                      font: 'inherit',
+                      fontWeight: 500,
+                      cursor: 'pointer',
+                    }}
+                  >
+                    🗓️ {fmtLP(reading.py, reading.pyDisplay, showIntermediary)}
+                  </button>
                 </div>
                 <div className="reading-row">
                   <span className="reading-key">Personal Month</span>
@@ -444,13 +572,13 @@ export default function ReadingPage() {
               </div>
             </div>
             <div className="tiles-row-2">
-              <div className="tile" onClick={() => openPanel('careers')}>
-                <div className="tile-emoji">💼</div>
-                <div className="tile-label">Careers</div>
+              <div className="tile" onClick={() => openPanel('celtic')}>
+                <div className="tile-emoji">🌳</div>
+                <div className="tile-label">Celtic</div>
               </div>
-              <div className="tile" onClick={() => openPanel('personalYear')}>
-                <div className="tile-emoji">🗓️</div>
-                <div className="tile-label">Personal Year</div>
+              <div className="tile" onClick={() => openPanel('vedic')}>
+                <div className="tile-emoji" style={{ fontFamily: 'serif', fontSize: '1.5rem' }}>ॐ</div>
+                <div className="tile-label">Vedic</div>
               </div>
               <div className="tile" onClick={() => openPanel('timeline')}>
                 <div className="tile-emoji">📆</div>
@@ -480,9 +608,29 @@ export default function ReadingPage() {
             </div>
             <div className="panel-close" onClick={closePanel}>✕</div>
           </div>
+          {isNumPanel && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '0 16px 14px', borderBottom: '1px solid var(--border-light)' }}>
+              <button
+                onClick={() => { const i = NUM_TABS.indexOf(numTab); switchNumTab(NUM_TABS[(i - 1 + NUM_TABS.length) % NUM_TABS.length]); }}
+                style={{ background: 'none', border: '1px solid var(--border-light)', borderRadius: '6px', color: 'var(--text-dim)', cursor: 'pointer', fontSize: '1rem', padding: '5px 9px', lineHeight: 1, flexShrink: 0 }}
+              >‹</button>
+              {NUM_TABS.map(tab => (
+                <button
+                  key={tab}
+                  onClick={() => switchNumTab(tab)}
+                  title={TAB_LABEL[tab]}
+                  style={{ flex: 1, background: numTab === tab ? 'var(--gold)' : 'transparent', border: '1px solid ' + (numTab === tab ? 'var(--gold)' : 'var(--border-light)'), borderRadius: '6px', color: numTab === tab ? '#111' : 'var(--text-dim)', cursor: 'pointer', fontSize: '1rem', padding: '5px 0', lineHeight: 1 }}
+                >{TAB_EMOJI[tab]}</button>
+              ))}
+              <button
+                onClick={() => { const i = NUM_TABS.indexOf(numTab); switchNumTab(NUM_TABS[(i + 1) % NUM_TABS.length]); }}
+                style={{ background: 'none', border: '1px solid var(--border-light)', borderRadius: '6px', color: 'var(--text-dim)', cursor: 'pointer', fontSize: '1rem', padding: '5px 9px', lineHeight: 1, flexShrink: 0 }}
+              >›</button>
+            </div>
+          )}
           <div
             className="md-content"
-            dangerouslySetInnerHTML={{ __html: panelHtml }}
+            dangerouslySetInnerHTML={{ __html: isNumPanel ? (numTabHtml[numTab] || '') : panelHtml }}
           />
         </div>
       </div>

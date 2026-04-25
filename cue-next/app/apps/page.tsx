@@ -45,6 +45,27 @@ const APPS = [
     description: 'Explore fashion brands by their founding numerology',
     color: 'var(--rose)',
   },
+  {
+    label: 'Romance',
+    href: '/romance',
+    icon: '♡',
+    description: 'Discover your ideal matches by numerology and zodiac',
+    color: 'var(--rose)',
+  },
+  {
+    label: 'Careers',
+    href: '/careers',
+    icon: '◆',
+    description: 'Compare career paths across numerology and astrology systems',
+    color: 'var(--accent)',
+  },
+  {
+    label: 'Ancient Numbers',
+    href: '/ancient-numbers',
+    icon: '◬',
+    description: 'Calculate Chaldean and Pythagorean name numbers',
+    color: 'var(--gold)',
+  },
 ];
 
 export default function AppsPage() {

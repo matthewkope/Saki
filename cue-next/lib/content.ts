@@ -48,21 +48,24 @@ You can handle stress and pressure extremely well - you thrive when others might
 ### Challenges
 1s fail at life by avoiding courage when it is your moment to step up and lead. If fear keeps you from doing the right thing and you lower your head to follow the crowd you miss your soul mission as a 1 lifepath.
 
+## Friendly Numbers
+- Life Path 7 — Independent intellect and leadership align through mutual respect and space.
+- Life Path 8 — Ambition and power align, though control dynamics can create friction.
+- Life Path 11 — The leader and the visionary find equal footing when ego is set aside.
+
 ## Neutral Numbers
-- 7 Life Path = 79%: Independent intellect and leadership align through mutual respect and space.
-- 11 Life Path = 79%: The leader and the visionary find equal footing when ego is set aside.
-- 1 Life Path = 76%: Shared drive creates momentum, though ego competition is constant.
-- 28 Life Path = 66%: Two independent leaders navigating their paths with karmic awareness.
-- 8 Life Path = 65%: Ambition and power align, though control dynamics can create friction.
+- Life Path 1 — Shared drive creates momentum, though ego competition is constant.
+- Life Path 2
+- Life Path 3 — Social energy dilutes the 1's focused and independent drive.
+- Life Path 4 — Two disciplined energies, but fundamentally different approaches to life.
+- Life Path 5 — Freedom resists the 1's need to lead and control outcomes.
+- Life Path 6 — The nurturer's group focus conflicts with the 1's need for independence.
+- Life Path 22 — Both builders, but the 22's collective vision clashes with the 1's ego.
+- Life Path 28 — Two independent leaders navigating their paths with karmic awareness.
+- Life Path 33 — Two powerful influences competing for direction and authority.
 
 ## Enemy Numbers
-- 9 Life Path = 14%: The mirror absorbs the 1's leadership energy without giving direction back.
-- 4 Life Path = 48%: Two disciplined energies, but fundamentally different approaches to life.
-- 5 Life Path = 51%: Freedom resists the 1's need to lead and control outcomes.
-- 3 Life Path = 53%: Social energy dilutes the 1's focused and independent drive.
-- 6 Life Path = 53%: The nurturer's group focus conflicts with the 1's need for independence.
-- 33 Life Path = 50%: Two powerful influences competing for direction and authority.
-- 22 Life Path = 59%: Both builders, but the 22's collective vision clashes with the 1's ego.`,
+- Life Path 9 — The mirror absorbs the 1's leadership energy without giving direction back.`,
 
     3: `# Three Life Path
 
@@ -116,22 +119,23 @@ Threes win at life by being a master networker who knows a guy for everything, b
 Threes fail by not finishing what they start. Bright ideas come easily but without focus and discipline they never reach their full potential. Distraction and lack of follow-through keep you from building the success your creativity is capable of producing.
 
 ## Friendly Numbers
-- 5 Life Path = 83%: Communication and freedom create a vibrant, adventurous bond built on movement and expression.
-- 8 Life Path = 80%: Social networking meets business power — a productive and dynamic combination.
+- Life Path 5 — Communication and freedom create a vibrant, adventurous bond built on movement and expression.
+- Life Path 8 — Social networking meets business power — a productive and dynamic combination.
 
 ## Neutral Numbers
-- 3 Life Path = 66%: Shared humor and creativity keep the energy light and entertaining.
-- 6 Life Path = 66%: Social warmth and nurturing energy find easy common ground.
-- 11 Life Path = 66%: Both expressive and passionate, though emotional depth differs.
-- 33 Life Path = 66%: Two communicators with creative purpose and shared frequency.
+- Life Path 1 — Leadership and communication compete rather than complement.
+- Life Path 2
+- Life Path 3 — Shared humor and creativity keep the energy light and entertaining.
+- Life Path 6 — Social warmth and nurturing energy find easy common ground.
+- Life Path 7 — Extroversion meets solitude — fundamentally opposing life needs.
+- Life Path 9 — Both social, but ego and surface adaptation create disconnect.
+- Life Path 11 — Both expressive and passionate, though emotional depth differs.
+- Life Path 22 — Playfulness clashes with serious legacy-building ambitions.
+- Life Path 28 — Karmic weight and social lightness rarely find alignment.
+- Life Path 33 — Two communicators with creative purpose and shared frequency.
 
 ## Enemy Numbers
-- 4 Life Path = 17%: Structure and spontaneity create constant friction — order vs. chaos.
-- 22 Life Path = 17%: Playfulness clashes with serious legacy-building ambitions.
-- 9 Life Path = 52%: Both social, but ego and surface adaptation create disconnect.
-- 7 Life Path = 51%: Extroversion meets solitude — fundamentally opposing life needs.
-- 1 Life Path = 53%: Leadership and communication compete rather than complement.
-- 28 Life Path = 53%: Karmic weight and social lightness rarely find alignment.`,
+- Life Path 4 — Structure and spontaneity create constant friction — order vs. chaos.`,
 
     4: `# Four Life Path
 
@@ -175,21 +179,24 @@ Change feels like disorder to you, but flexibility is not weakness - it is the s
 ### Challenges
 4s fail by falling into laziness and wasting time on what does not matter. When effort is avoided the 4 lifepath quickly spirals into frustration and stagnation.
 
+## Friendly Numbers
+- Life Path 6 — Both responsible and structured in how they approach life and family.
+- Life Path 8 — Both hardworking and results-driven — mutual respect flows naturally.
+- Life Path 9 — Adaptive mirror energy confuses the systematic 4 lifepath.
+
 ## Neutral Numbers
-- 33 Life Path = 76%: Disciplined effort supports the master teacher's long-term structured vision.
-- 8 Life Path = 75%: Both hardworking and results-driven — mutual respect flows naturally.
-- 22 Life Path = 70%: Two builders who understand the deep value of slow and steady effort.
-- 4 Life Path = 69%: Shared work ethic and structure, though rigid energy can stall progress.
-- 7 Life Path = 68%: Systematic thinking meets knowledge-seeking in a compatible order.
-- 6 Life Path = 65%: Both responsible and structured in how they approach life and family.
-- 28 Life Path = 62%: Two disciplined energies navigating karmic tests with shared patience.
+- Life Path 1 — Both want control, but leadership styles constantly clash.
+- Life Path 2
+- Life Path 4 — Shared work ethic and structure, though rigid energy can stall progress.
+- Life Path 7 — Systematic thinking meets knowledge-seeking in a compatible order.
+- Life Path 11 — Emotional volatility unsettles the 4's carefully structured world.
+- Life Path 22 — Two builders who understand the deep value of slow and steady effort.
+- Life Path 28 — Two disciplined energies navigating karmic tests with shared patience.
+- Life Path 33 — Disciplined effort supports the master teacher's long-term structured vision.
 
 ## Enemy Numbers
-- 3 Life Path = 17%: Creative chaos disrupts the 4's essential need for order and routine.
-- 5 Life Path = 25%: Freedom and routine are fundamentally and permanently opposed.
-- 11 Life Path = 57%: Emotional volatility unsettles the 4's carefully structured world.
-- 1 Life Path = 48%: Both want control, but leadership styles constantly clash.
-- 9 Life Path = 48%: Adaptive mirror energy confuses the systematic 4 lifepath.`,
+- Life Path 3 — Creative chaos disrupts the 4's essential need for order and routine.
+- Life Path 5 — Freedom and routine are fundamentally and permanently opposed.`,
 
     5: `# 5 Life Path
 
@@ -236,22 +243,23 @@ You love an active lifestyle of going places, doing things and feeling a sense o
 5s often fail through relationships with the opposite sex. The freedom of 5 allows you to attract many options but not every option is meant for you. Choose relationships with care.
 
 ## Friendly Numbers
-- 3 Life Path = 83%: Freedom and communication create non-stop adventure, fun, and shared expression.
-- 7 Life Path = 81%: Exploration meets knowledge — two independent souls in deep mutual expansion.
-- 6 Life Path = 80%: Freedom and nurturing balance beautifully when both are willing to commit.
+- Life Path 3 — Freedom and communication create non-stop adventure, fun, and shared expression.
+- Life Path 7 — Exploration meets knowledge — two independent souls in deep mutual expansion.
+- Life Path 28 — Karmic weight slows the 5's forward momentum significantly.
+- Life Path 33 — The gravity of the master teacher conflicts deeply with the 5's need for freedom.
 
 ## Neutral Numbers
-- 8 Life Path = 66%: Dynamic energy meets business power — exciting and fast-moving.
-- 9 Life Path = 66%: Both adaptive and movement-oriented — a natural and easy flow.
+- Life Path 1 — Independence vs. independence — both want to go their own way.
+- Life Path 2
+- Life Path 5 — Two free spirits can scatter in all directions without any grounding.
+- Life Path 8 — Dynamic energy meets business power — exciting and fast-moving.
+- Life Path 9 — Both adaptive and movement-oriented — a natural and easy flow.
+- Life Path 11 — Emotional intensity clashes with the 5's preference to keep things light.
+- Life Path 22 — Legacy-building structures constrain the 5's need to roam and explore.
 
 ## Enemy Numbers
-- 33 Life Path = 17%: The gravity of the master teacher conflicts deeply with the 5's need for freedom.
-- 22 Life Path = 24%: Legacy-building structures constrain the 5's need to roam and explore.
-- 4 Life Path = 25%: Routine is the 5's greatest enemy — this pairing drains both sides.
-- 5 Life Path = 52%: Two free spirits can scatter in all directions without any grounding.
-- 11 Life Path = 52%: Emotional intensity clashes with the 5's preference to keep things light.
-- 28 Life Path = 55%: Karmic weight slows the 5's forward momentum significantly.
-- 1 Life Path = 51%: Independence vs. independence — both want to go their own way.`,
+- Life Path 4 — Routine is the 5's greatest enemy — this pairing drains both sides.
+- Life Path 6 — Freedom and nurturing balance beautifully when both are willing to commit.`,
 
     6: `# 6 Life Path
 
@@ -298,22 +306,23 @@ You are an extremely loyal and trustworthy person. Loyalty is part of your core 
 6s fail by becoming overly selfish and falling into a service-to-self mindset. Independence and personal identity are important but when success comes at the expense of those you care about the 6 lifepath loses its true purpose.
 
 ## Friendly Numbers
-- 5 Life Path = 80%: Freedom's spark lights up the loyal 6's need for warmth and shared experience.
-- 8 Life Path = 80%: Nurturer meets power — a strong, balanced team that builds together.
+- Life Path 2
+- Life Path 4 — Both responsible and home-oriented — a reliable and grounded alignment.
 
 ## Neutral Numbers
-- 3 Life Path = 66%: Social warmth and communication fill the 6's need for community and belonging.
-- 4 Life Path = 65%: Both responsible and home-oriented — a reliable and grounded alignment.
-- 22 Life Path = 65%: Family legacy and community-building values find strong common ground.
+- Life Path 1 — Independence clashes with the 6's deep need for togetherness and loyalty.
+- Life Path 3 — Social warmth and communication fill the 6's need for community and belonging.
+- Life Path 6 — Too much of the same nurturing energy creates codependency and stagnation.
+- Life Path 8 — Nurturer meets power — a strong, balanced team that builds together.
+- Life Path 9 — The mirror absorbs the 6's nurturing energy without reciprocation.
+- Life Path 11 — Emotional volatility disrupts the stable, caring home the 6 works to build.
+- Life Path 22 — Family legacy and community-building values find strong common ground.
+- Life Path 28 — Karmic cycles bring instability that the 6 cannot consistently support.
+- Life Path 33 — The master teacher's world-changing intensity overwhelms the nurturing 6.
 
 ## Enemy Numbers
-- 9 Life Path = 10%: Deepest conflict — the mirror absorbs the 6's nurturing energy without reciprocation.
-- 7 Life Path = 36%: Solitude clashes deeply with the 6's need for closeness and community.
-- 6 Life Path = 59%: Too much of the same nurturing energy creates codependency and stagnation.
-- 11 Life Path = 59%: Emotional volatility disrupts the stable, caring home the 6 works to build.
-- 33 Life Path = 59%: The master teacher's world-changing intensity overwhelms the nurturing 6.
-- 1 Life Path = 53%: Independence clashes with the 6's deep need for togetherness and loyalty.
-- 28 Life Path = 53%: Karmic cycles bring instability that the 6 cannot consistently support.`,
+- Life Path 5 — Freedom's spark lights up the loyal 6's need for warmth and shared experience.
+- Life Path 7 — Solitude clashes deeply with the 6's need for closeness and community.`,
 
     7: `# Seven Life Path
 
@@ -350,22 +359,23 @@ Maintaining a relationship can be difficult for a 7 lifepath and they often find
 7s fail at life by closing the mind and rejecting spiritual growth. If you refuse to study and instead try to live exactly as everyone else you will not progress far.
 
 ## Friendly Numbers
-- 28 Life Path = 83%: Knowledge meets karmic mastery — the deepest and most aligned pairing for the 7.
-- 5 Life Path = 81%: Freedom and knowledge go perfectly hand in hand through exploration.
-- 11 Life Path = 81%: Two spiritual seekers with profound intuitive and emotional understanding.
+- Life Path 1 — Both independent thinkers who deeply respect each other's autonomous space.
+- Life Path 5 — Freedom and knowledge go perfectly hand in hand through exploration.
+- Life Path 11 — Two spiritual seekers with profound intuitive and emotional understanding.
+- Life Path 28 — Knowledge meets karmic mastery — the deepest and most aligned pairing for the 7.
 
 ## Neutral Numbers
-- 1 Life Path = 79%: Both independent thinkers who deeply respect each other's autonomous space.
-- 22 Life Path = 69%: The builder and the seeker find a productive, long-term partnership.
-- 4 Life Path = 68%: Systematic thinking complements the 7's love of deep knowledge.
-- 7 Life Path = 60%: Two loners who understand each other perfectly without needing words.
+- Life Path 2
+- Life Path 3 — Constant socializing overwhelms the 7's need for quiet and reflection.
+- Life Path 4 — Systematic thinking complements the 7's love of deep knowledge.
+- Life Path 7 — Two loners who understand each other perfectly without needing words.
+- Life Path 9 — Ego and surface adaptation disrupt the 7's focused inner world.
+- Life Path 22 — The builder and the seeker find a productive, long-term partnership.
+- Life Path 33 — Master teacher and deep seeker clash over method and approach to truth.
 
 ## Enemy Numbers
-- 8 Life Path = 18%: Material power and wealth-focus conflict with the 7's spiritual pursuits.
-- 33 Life Path = 24%: Master teacher and deep seeker clash over method and approach to truth.
-- 6 Life Path = 36%: Community expectations clash with the 7's fundamental need for solitude.
-- 9 Life Path = 43%: Ego and surface adaptation disrupt the 7's focused inner world.
-- 3 Life Path = 51%: Constant socializing overwhelms the 7's need for quiet and reflection.`,
+- Life Path 6 — Community expectations clash with the 7's fundamental need for solitude.
+- Life Path 8 — Material power and wealth-focus conflict with the 7's spiritual pursuits.`,
 
     8: `# 8 Lifepath
 
@@ -409,22 +419,23 @@ In many ways the 8 energy represents the balance of the Yin and the Yang - there
 8s fail at life by cheating, stealing, manipulating or moving in unrighteous ways. Karma returns quickly and if you create imbalance you will face heavy payback. Every action carries weight and even the smallest dishonesty triggers consequences.
 
 ## Friendly Numbers
-- 3 Life Path = 80%: Social networking meets business power — an unbeatable wealth-building combination.
-- 6 Life Path = 80%: Provider energy and nurturer energy create a strong, abundant team.
+- Life Path 1 — Ambition and power align well through shared drive and mutual respect.
+- Life Path 2
+- Life Path 3 — Social networking meets business power — an unbeatable wealth-building combination.
+- Life Path 4 — Both hardworking and results-driven — a strong and reliable business pairing.
+- Life Path 5 — Business energy and freedom can create fast-moving dynamic momentum.
+- Life Path 6 — Provider energy and nurturer energy create a strong, abundant team.
+- Life Path 22 — Two material builders working together toward something lasting.
+- Life Path 28 — Two karma-and-power-driven energies that resonate on a deep level.
+- Life Path 33 — Power meets influence — a commanding and capable pairing.
 
 ## Neutral Numbers
-- 4 Life Path = 75%: Both hardworking and results-driven — a strong and reliable business pairing.
-- 28 Life Path = 69%: Two karma-and-power-driven energies that resonate on a deep level.
-- 1 Life Path = 65%: Ambition and power align well through shared drive and mutual respect.
-- 5 Life Path = 66%: Business energy and freedom can create fast-moving dynamic momentum.
-- 22 Life Path = 66%: Two material builders working together toward something lasting.
-- 33 Life Path = 66%: Power meets influence — a commanding and capable pairing.
+- Life Path 9 — The mirror of ego meets the force of 8 — a volatile and unstable mix.
+- Life Path 11 — Emotional fire and material focus pull in opposite directions.
 
 ## Enemy Numbers
-- 7 Life Path = 18%: Material wealth and power conflict with the 7's spiritual detachment.
-- 8 Life Path = 31%: Two 8s create karmic imbalance — too much concentrated power in one place.
-- 9 Life Path = 52%: The mirror of ego meets the force of 8 — a volatile and unstable mix.
-- 11 Life Path = 52%: Emotional fire and material focus pull in opposite directions.`,
+- Life Path 7 — Material wealth and power conflict with the 7's spiritual detachment.
+- Life Path 8 — Two 8s create karmic imbalance — too much concentrated power in one place.`,
 
     9: `# 9 Life Path
 
@@ -453,21 +464,24 @@ Intelligent and observant, you learn fast and easily pick up new subjects and te
 ### Appearance
 Good looks are of great value to you - you appreciate style, beauty and nice looking things and the people around you.
 
+## Friendly Numbers
+- Life Path 4 — Structure frustrates the ever-shifting and adaptive 9.
+- Life Path 5 — Both adaptive and experience-oriented — a natural and easy mutual flow.
+- Life Path 6 — The nurturer gives freely while the mirror only absorbs.
+
 ## Neutral Numbers
-- 5 Life Path = 66%: Both adaptive and experience-oriented — a natural and easy mutual flow.
-- 22 Life Path = 66%: The mirror absorbs the builder's vision and helps amplify it outward.
-- 33 Life Path = 66%: Adaptation serves the master teacher's mission with natural flexibility.
+- Life Path 3 — Social energy and adaptation create surface connection but no real depth.
+- Life Path 7 — Deep knowledge-seeking and ego adaptation rarely align in purpose.
+- Life Path 8 — Power and the mirror create an unbalanced and exhausting exchange.
+- Life Path 9 — Two mirrors reflecting each other leads nowhere and builds nothing.
 
 ## Enemy Numbers
-- 1 Life Path = 14%: The mirror reflects leadership energy back but creates no real traction.
-- 6 Life Path = 10%: Deepest conflict — the nurturer gives freely while the mirror only absorbs.
-- 11 Life Path = 17%: Emotional passion collides with cold adaptive energy — a painful mismatch.
-- 28 Life Path = 18%: Karmic depth and surface-level adaptation simply cannot coexist.
-- 3 Life Path = 52%: Social energy and adaptation create surface connection but no real depth.
-- 8 Life Path = 52%: Power and the mirror create an unbalanced and exhausting exchange.
-- 4 Life Path = 48%: Structure frustrates the ever-shifting and adaptive 9.
-- 9 Life Path = 45%: Two mirrors reflecting each other leads nowhere and builds nothing.
-- 7 Life Path = 43%: Deep knowledge-seeking and ego adaptation rarely align in purpose.`,
+- Life Path 1 — The mirror reflects leadership energy back but creates no real traction.
+- Life Path 2
+- Life Path 11 — Emotional passion collides with cold adaptive energy — a painful mismatch.
+- Life Path 22 — The mirror absorbs the builder's vision and helps amplify it outward.
+- Life Path 28 — Karmic depth and surface-level adaptation simply cannot coexist.
+- Life Path 33 — Adaptation serves the master teacher's mission with natural flexibility.`,
 
     11: `# 11 Life Path
 
@@ -513,22 +527,23 @@ You are deeply spiritual and often gravitate towards higher knowledge - such as 
 11s face tests and challenges and are pushed to the limits of their emotional capabilities by the universe as a test to see how balanced they are. You have difficult challenges because that's what you signed up for as an 11.
 
 ## Friendly Numbers
-- 28 Life Path = 83%: Emotional depth and karmic power resonate at the highest level of alignment.
-- 7 Life Path = 81%: Spiritual intuition meets deep knowledge — a profound and rare connection.
+- Life Path 1 — Strong leadership energy that respects the 11's visionary presence.
+- Life Path 7 — Spiritual intuition meets deep knowledge — a profound and rare connection.
 
 ## Neutral Numbers
-- 1 Life Path = 79%: Strong leadership energy that respects the 11's visionary presence.
-- 3 Life Path = 66%: Both expressive and passionate — communication finds an easy outlet.
+- Life Path 2
+- Life Path 3 — Both expressive and passionate — communication finds an easy outlet.
+- Life Path 4 — The 4's need for order is constantly disrupted by the 11's emotional waves.
+- Life Path 5 — Free-spirit energy lacks the emotional depth the 11 deeply craves.
+- Life Path 6 — Nurturing expectations create pressure that the 11's volatility breaks.
+- Life Path 8 — Material focus cannot hold the spiritual fire and depth of the 11.
+- Life Path 11 — Two 11s can amplify each other's emotional extremes to a dangerous level.
+- Life Path 22 — Builder energy cannot match or contain the 11's emotional intensity.
+- Life Path 28 — Emotional depth and karmic power resonate at the highest level of alignment.
+- Life Path 33 — Two old souls, but the 11's volatility disrupts the 33's steady mission.
 
 ## Enemy Numbers
-- 9 Life Path = 17%: Ego-driven adaptation wounds the 11's deep emotional and spiritual world.
-- 22 Life Path = 59%: Builder energy cannot match or contain the 11's emotional intensity.
-- 6 Life Path = 59%: Nurturing expectations create pressure that the 11's volatility breaks.
-- 11 Life Path = 59%: Two 11s can amplify each other's emotional extremes to a dangerous level.
-- 4 Life Path = 57%: The 4's need for order is constantly disrupted by the 11's emotional waves.
-- 8 Life Path = 52%: Material focus cannot hold the spiritual fire and depth of the 11.
-- 33 Life Path = 52%: Two old souls, but the 11's volatility disrupts the 33's steady mission.
-- 5 Life Path = 52%: Free-spirit energy lacks the emotional depth the 11 deeply craves.`,
+- Life Path 9 — Ego-driven adaptation wounds the 11's deep emotional and spiritual world.`,
 
     22: `# 22 Life Path
 
@@ -572,22 +587,23 @@ As a master strategist, you are a capable planner and are able to think 10 steps
 22s fail by neglecting the material side of life. False teachings that dismiss money and possessions lead you off course because your path requires resources. As a master builder you are meant to take material means and direct them toward the greater good.
 
 ## Friendly Numbers
-- 33 Life Path = 80%: Two master numbers aligned on legacy, influence, and building a better world.
+- Life Path 6 — Family legacy and community-building values align with the 22's mission.
+- Life Path 7 — Strategy meets deep knowledge in a powerful and disciplined partnership.
+- Life Path 8 — Two material-world forces building something lasting with complementary power.
 
 ## Neutral Numbers
-- 4 Life Path = 70%: Shared work ethic and systematic thinking — a naturally productive pairing.
-- 22 Life Path = 70%: Two builders who see the same long-term vision and amplify each other.
-- 7 Life Path = 69%: Strategy meets deep knowledge in a powerful and disciplined partnership.
-- 8 Life Path = 66%: Two material-world forces building something lasting with complementary power.
-- 9 Life Path = 66%: The adaptive mirror serves the builder's vision effectively and broadly.
-- 6 Life Path = 65%: Family legacy and community-building values align with the 22's mission.
-- 28 Life Path = 63%: Karmic cycles support and deepen the 22's long-term legacy work.
+- Life Path 1 — Independence conflicts with the 22's collective and community-focused mission.
+- Life Path 2
+- Life Path 3 — Social distraction and lightness consistently undermine serious legacy-building.
+- Life Path 4 — Shared work ethic and systematic thinking — a naturally productive pairing.
+- Life Path 11 — Emotional intensity disrupts the methodical pace of the master builder.
+- Life Path 22 — Two builders who see the same long-term vision and amplify each other.
+- Life Path 28 — Karmic cycles support and deepen the 22's long-term legacy work.
+- Life Path 33 — Two master numbers aligned on legacy, influence, and building a better world.
 
 ## Enemy Numbers
-- 3 Life Path = 17%: Social distraction and lightness consistently undermine serious legacy-building.
-- 5 Life Path = 24%: Freedom resists the 22's disciplined, structured long-term plans entirely.
-- 11 Life Path = 59%: Emotional intensity disrupts the methodical pace of the master builder.
-- 1 Life Path = 59%: Independence conflicts with the 22's collective and community-focused mission.`,
+- Life Path 5 — Freedom resists the 22's disciplined, structured long-term plans entirely.
+- Life Path 9 — The adaptive mirror serves the builder's vision effectively and broadly.`,
 
     28: `# 28/1 Life Path
 
@@ -620,22 +636,23 @@ Your willpower is exceptional. You do not give up easily and are capable of rebu
 28/1s face challenges when ego overrides judgment or when shortcuts tempt you away from doing things the right way. The karmic nature of 28 means unrighteous actions create swift and heavy consequences.
 
 ## Friendly Numbers
-- 7 Life Path = 83%: Deep knowledge and karmic mastery — the most spiritually aligned pairing for 28.
-- 11 Life Path = 83%: Emotional depth and karmic power resonate at a profound and rare level.
+- Life Path 5 — Freedom avoids the heavy karmic responsibility the 28 must embrace.
+- Life Path 7 — Deep knowledge and karmic mastery — the most spiritually aligned pairing for 28.
+- Life Path 8 — Two power-and-karma-driven energies that amplify each other's strength.
+- Life Path 33 — Two master frequencies on different wavelengths — misaligned paths.
 
 ## Neutral Numbers
-- 28 Life Path = 70%: Shared karmic cycles create deep mutual understanding and rare trust.
-- 8 Life Path = 69%: Two power-and-karma-driven energies that amplify each other's strength.
-- 1 Life Path = 66%: Independent leadership supports the 28's karmic mission with drive.
-- 22 Life Path = 63%: Builder and karmic master align on long-term goals and shared purpose.
-- 4 Life Path = 62%: Discipline and karmic work ethic find steady and reliable common ground.
+- Life Path 1 — Independent leadership supports the 28's karmic mission with drive.
+- Life Path 2
+- Life Path 3 — Social lightness clashes with the weight and depth of karmic lessons.
+- Life Path 4 — Discipline and karmic work ethic find steady and reliable common ground.
+- Life Path 6 — Nurturing comfort cannot provide what deep karmic growth requires.
+- Life Path 11 — Emotional depth and karmic power resonate at a profound and rare level.
+- Life Path 22 — Builder and karmic master align on long-term goals and shared purpose.
+- Life Path 28 — Shared karmic cycles create deep mutual understanding and rare trust.
 
 ## Enemy Numbers
-- 9 Life Path = 18%: The surface mirror cannot hold the deep karmic weight of the 28 path.
-- 3 Life Path = 53%: Social lightness clashes with the weight and depth of karmic lessons.
-- 6 Life Path = 53%: Nurturing comfort cannot provide what deep karmic growth requires.
-- 33 Life Path = 53%: Two master frequencies on different wavelengths — misaligned paths.
-- 5 Life Path = 55%: Freedom avoids the heavy karmic responsibility the 28 must embrace.`,
+- Life Path 9 — The surface mirror cannot hold the deep karmic weight of the 28 path.`,
 
     33: `# 33 Lifepath
 
@@ -676,22 +693,23 @@ You're here to complete the karmic cycle. This may be your final lifetime in thi
 As a 33 lifepath, life is not meant to be easy for you. People will fight back at you, people will try to stop you from reaching your potential. This is a test by the universe - never let anybody's opinion or actions stop you from reaching your goals.
 
 ## Friendly Numbers
-- 22 Life Path = 80%: Two master numbers united on legacy, influence, and elevating the world.
+- Life Path 5 — The need for freedom and lightness resists the gravity of the master teacher.
+- Life Path 8 — Power and influence create a commanding and impactful partnership.
+- Life Path 28 — Two karmic masters operating on different frequencies and timelines.
 
 ## Neutral Numbers
-- 4 Life Path = 76%: Disciplined structure gives the 33's broad vision a foundation to stand on.
-- 3 Life Path = 66%: Communication energy amplifies and spreads the 33's teaching mission.
-- 8 Life Path = 66%: Power and influence create a commanding and impactful partnership.
-- 9 Life Path = 66%: The adaptive mirror reflects and broadcasts the 33's message at scale.
+- Life Path 1 — Independent ego competes with the 33's collective and world-serving purpose.
+- Life Path 2
+- Life Path 3 — Communication energy amplifies and spreads the 33's teaching mission.
+- Life Path 4 — Disciplined structure gives the 33's broad vision a foundation to stand on.
+- Life Path 6 — The nurturing focus of 6 cannot contain the 33's world-changing mission.
+- Life Path 7 — Solitary knowledge-seeking conflicts with the 33's large-scale influence mission.
+- Life Path 11 — Both are old souls, but the 11's volatility disrupts the 33's steady mission.
+- Life Path 22 — Two master numbers united on legacy, influence, and elevating the world.
+- Life Path 33 — Two 33s amplify each other's challenges more than their strengths.
 
 ## Enemy Numbers
-- 5 Life Path = 17%: The need for freedom and lightness resists the gravity of the master teacher.
-- 7 Life Path = 24%: Solitary knowledge-seeking conflicts with the 33's large-scale influence mission.
-- 1 Life Path = 50%: Independent ego competes with the 33's collective and world-serving purpose.
-- 33 Life Path = 52%: Two 33s amplify each other's challenges more than their strengths.
-- 11 Life Path = 52%: Both are old souls, but the 11's volatility disrupts the 33's steady mission.
-- 28 Life Path = 53%: Two karmic masters operating on different frequencies and timelines.
-- 6 Life Path = 59%: The nurturing focus of 6 cannot contain the 33's world-changing mission.`
+- Life Path 9 — The adaptive mirror reflects and broadcasts the 33's message at scale.`
   },
 
   zodiac: {
@@ -1787,219 +1805,405 @@ Pisces thrives by honoring imagination while staying anchored in reality.
   careers: {
     1: `# 💼 1 Life Path — Careers
 
-## Professional Strengths
-Leadership, Decision-making, Independence, Strategic Vision
+## Profile Overview
+Your core energy is independent, aggressive, and visionary. Thrives in leadership and trailblazing roles. Made to start, lead, and build.
 
-## Ideal Career Paths
-1 lifepaths work best when they are in charge. Being a follower long term is draining because you are built to make decisions, set direction, and take responsibility. You do better when your name is on the results and you have room to move without someone micromanaging you.
+## Top Career Fields
+- Entrepreneurship
+- Sales and Negotiation
+- Law (Litigation)
+- Athletics and Performance
+- Tech Innovation
 
-CEO, Founder, Manager, Supervisor, Lawyer, Finance, Athlete, Sales Leader
+## Ideal Roles
+- Founder
+- Startup CEO
+- Sales Director
+- Athlete
+- Attorney
 
-## Work Environment
-You work best in leadership positions where you can be the one giving orders rather than taking them. You thrive under pressure.
+## Workplace Needs
+- Autonomy
+- Fast-paced environment
+- Results-based evaluation
+- Freedom to innovate
+- Solitude and quiet for strategic planning
 
-## Challenges
-Learning to take advice from others and avoiding arrogance in high-stakes environments.`,
+## Career Traps
+Avoid support roles, routine-heavy jobs, corporate middle management, overly structured environments, and being under strong authority. Protect your energy by defining your role early.
+
+## Expert Advice
+Build something of your own, even as a side hustle. Use your impatience to drive change, not chaos. Let your performance speak, but don't neglect your personal brand. Leadership is your birthright — claim it.`,
 
     3: `# 💼 3 Life Path — Careers
 
-## Professional Strengths
-Communication, Networking, Creativity, Multitasking
+## Profile Overview
+Your core energy is expressive, youthful, and attention-grabbing. Built to entertain, inspire, and communicate. Thrives in environments where energy, creativity, and connection are valued over structure.
 
-## Ideal Career Paths
-3 lifepaths need to talk, sell, entertain, and stay in motion. The worst thing for a 3 is doing the same exact thing everyday with no social life built into the job. You do best when you can bounce between projects and keep things fresh.
+## Top Career Fields
+- Entertainment
+- Writing
+- Public Speaking
+- Content Creation
+- Fashion
 
-Sales, Marketing, Social Media, PR, Content Creation, Writing, Podcasting, Entertainment
+## Ideal Roles
+- Comedian
+- Influencer
+- Copywriter
+- Performer
+- Creative Director
 
-## Work Environment
-A main job plus side hustles is usually the winning formula. You need to keep things fresh and switch between tasks frequently.
+## Workplace Needs
+- Fun and flexible workspaces
+- Creative freedom
+- Audience interaction
+- Fast-moving projects
+- Recognition and praise
 
-## Challenges
-Finishing what you start. Bright ideas come easily but require focus and discipline to reach their full potential.`,
+## Career Traps
+Avoid repetitive jobs, structured 9-5s, isolated environments, bureaucratic systems, and overly serious workplaces. Protect your energy by defining your role early.
+
+## Expert Advice
+Use your natural charm to build a platform. Keep the energy flowing — boredom kills your creativity. You're here to light up the room, not file the paperwork. Stay sharp — behind the fun is real intelligence.`,
 
     4: `# 💼 4 Life Path — Careers
 
-## Professional Strengths
-Organization, Reliability, Systematic Thinking, Discipline
+## Profile Overview
+Your core energy is reliable, routine-driven, and system-oriented. Designed to build foundations, enforce structure, and maintain order through hard work and consistency.
 
-## Ideal Career Paths
-4 lifepaths are built for structure, systems, and real responsibility. You are the person who shows up early, stays consistent, and outworks everybody. You excel when you can build something that lasts.
+## Top Career Fields
+- Military and Law Enforcement
+- Engineering
+- Finance and Accounting
+- Architecture
+- Logistics
 
-Government, Security, Accounting, Bookkeeping, Engineering, Operations, Logistics, Construction
+## Ideal Roles
+- Engineer
+- Police Officer
+- Accountant
+- Architect
+- Operations Manager
 
-## Work Environment
-You thrive in controlled environments where operations and systems are clear. You outwork others through steady effort and routine.
+## Workplace Needs
+- Structure and routine
+- Clear rules and expectations
+- Traditional values
+- Stable work environment
+- Predictability
 
-## Challenges
-Getting stuck doing the hard work without getting the credit. Ensure your effort is rewarded and move on if a system is broken.`,
+## Career Traps
+Avoid fast-paced startups, unstructured roles, high-risk environments, creative or chaotic teams, and jobs that require constant reinvention. Protect your energy by defining your role early.
+
+## Expert Advice
+Your success is built one disciplined brick at a time — stick to the systems, they're your power. You outlast, not outflash. Protect your energy from chaos — it weakens your structure.`,
 
     5: `# 💼 5 Life Path — Careers
 
-## Professional Strengths
-Adaptability, Charisma, Networking, Resourcefulness
+## Profile Overview
+Your core energy is high-energy, magnetic, and freedom-obsessed. Built to explore, perform, and experience variety. Thrives in dynamic, stimulating environments that resist routine.
 
-## Ideal Career Paths
-5 lifepaths need freedom, variety, movement, and new environments. A strict routine job will make you feel trapped. You need work that includes travel, events, people, or constant change.
+## Top Career Fields
+- Sales and Marketing
+- Travel and Tourism
+- Entertainment
+- Health and Fitness
+- Influencer Economy
 
-- Travel industry
-- Hotel business
-- Event planning
-- Modeling
-- Driving
-- Pilot
-- Health industry
-- International business
+## Ideal Roles
+- Lifestyle Brand Creator
+- Actor
+- Fitness Influencer
+- Travel Blogger
+- Sales Closer
 
-## Work Environment
-Your goal is to build a career that feels like a lifestyle. Stagnation is your enemy — you need to experience change to stay motivated.
+## Workplace Needs
+- Flexibility and variety
+- Travel or movement
+- Excitement and stimulation
+- No micromanagement
+- Space for self-expression
 
-## Challenges
-Decision-making and commitment. You can be indecisive and change your mind at the last moment, which can impact long-term growth.`,
+## Career Traps
+Avoid repetitive or office-bound roles, micromanaged environments, static job descriptions, and emotionally restrictive teams. Protect your energy by defining your role early.
+
+## Expert Advice
+You're not here to sit still — move, perform, and pivot. Build a brand around your lifestyle — it's marketable. Say yes to change — it's your advantage, not your problem. Just don't confuse freedom with chaos.`,
 
     6: `# 💼 6 Life Path — Careers
 
-## Professional Strengths
-Nurturing, Responsibility, Teamwork, Problem-solving
+## Profile Overview
+Your core energy is domestic, loyal, and nurturing. Built to care, protect, and beautify. Thrives in environments centered on support, comfort, and emotional value.
 
-## Ideal Career Paths
-6 lifepaths work best in roles where you are needed. You do well when you feel like your effort helps people and creates stability. Team culture matters, and you usually do better in friendly environments than cutthroat ones.
+## Top Career Fields
+- Education
+- Healthcare and Wellness
+- Interior Design
+- Culinary Arts
+- Counseling
 
-Real Estate, Caretaker, Assistant, Government, Food Industry, Education Support, Service-based Careers
+## Ideal Roles
+- Doctor
+- Teacher
+- Chef
+- Wellness Coach
+- Interior Designer
 
-## Work Environment
-You are a natural team player who thrives on collective success. You enjoy working together with others to build something significant.
+## Workplace Needs
+- Emotionally safe spaces
+- Purpose-driven work
+- Work-life balance
+- Appreciation
+- Trust and consistency
 
-## Challenges
-Setting boundaries. You may solve everyone else's problems while neglecting your own goals and potential.`,
+## Career Traps
+Avoid toxic caregiving roles, over-responsibility, emotionally cold jobs, and workplaces lacking heart or beauty. Protect your energy by defining your role early.
+
+## Expert Advice
+You're here to build and protect — not to burn out. Boundaries make you stronger — not selfish. Pour into those who value it. Your ability to create comfort is a career superpower.`,
 
     7: `# 💼 7 Life Path — Careers
 
-## Professional Strengths
-Analysis, Independent Research, Problem-solving, Deep Thinking
+## Profile Overview
+Your core energy is that of a deep thinker, solitary seeker, and intuitive analyst. Built to uncover truth, master knowledge, and operate best in quiet, focused environments.
 
-## Ideal Career Paths
-7 lifepaths need to work with the mind, not the body. Physical labor drains a 7 over time even if they are strong. You do best alone, or with minimal social demands, and you usually outperform people when you are left to focus.
+## Top Career Fields
+- Research and Development
+- Academia
+- Psychology
+- Coding and Data
+- Philosophy
 
-Programmer, Analyst, Researcher, IT, Cybersecurity, Teacher, Designer, Data Work, Remote Business
+## Ideal Roles
+- Researcher
+- Professor
+- Data Analyst
+- Psychologist
+- Coder
 
-## Work Environment
-Technology is your cheat code to making money. You want to use your brain and intelligence rather than physical labor.
+## Workplace Needs
+- Solitude and quiet
+- Independent learning
+- Intellectual stimulation
+- Minimal distractions
+- Deep focus roles
 
-## Challenges
-Communication with others who can't keep up with your quick cognitive pace. Patience with slower thinkers is a skill worth building.`,
+## Career Traps
+Avoid high-social interaction jobs, emotionally demanding environments, crowded or loud spaces, and roles with constant collaboration or extroversion. Protect your energy by defining your role early.
+
+## Expert Advice
+Your mind is your greatest asset — protect its space. You're not antisocial — you're designed to go deeper than most. Build something alone, then bring it to the world. Quiet doesn't mean weak — it means wise.`,
 
     8: `# 💼 8 Life Path — Careers
 
-## Professional Strengths
-Financial Acumen, Leadership, Risk Management, Strategy
+## Profile Overview
+Your core energy is driven, strategic, and materially focused. Built to command, build wealth, and play the long game. Thrives in high-stakes environments where results, influence, and legacy matter.
 
-## Ideal Career Paths
-8 lifepaths do best when money is the focus and the environment is serious. You perform better when you are around transactions, assets, business, and power. Money problems can throw you off, so financial stability is not optional.
+## Top Career Fields
+- Finance and Investment
+- Real Estate
+- Executive Leadership
+- Politics
+- Business Strategy
 
-Banker, Accountant, Insurance, Sales, Business Owner, Finance, Investing, Real Estate
+## Ideal Roles
+- CFO
+- Investor
+- Real Estate Mogul
+- Political Strategist
+- Executive Director
 
-## Work Environment
-You thrive in high-stakes environments where you can manage power and resources. You are destined for abundance through karmic balance.
+## Workplace Needs
+- Authority and ownership
+- High earning potential
+- Competitive environments
+- Clear metrics
+- Financial impact
 
-## Challenges
-Ups and downs with money. You are good at making it but also good at losing it. Aim for long-term growth over short-term boosts.`,
+## Career Traps
+Avoid low-pay service jobs, roles with no growth path, emotion-driven or chaotic teams, and environments that lack structure or respect. Protect your energy by defining your role early.
+
+## Expert Advice
+Power is part of your path — own it without apology. Play long-term games with long-term people. Learn from losses — you'll bounce back bigger. Make peace with ambition — it's your spiritual test.`,
 
     9: `# 💼 9 Life Path — Careers
 
-## Professional Strengths
-Adaptability, Reverse Engineering, Strategic Support, Observation
+## Profile Overview
+Your core energy is mimetic, impressionable, and emotionally complex. Built to absorb and reflect the environment. Thrives online or in roles where identity is fluid and style is substance.
 
-## Ideal Career Paths
-9 lifepaths can succeed in almost anything because you adapt fast, but your environment decides your outcome. You do better behind the scenes, improving systems, supporting leaders, and making things run smoother.
+## Top Career Fields
+- Crypto and Web3
+- E-commerce
+- Online Content Creation
+- Social Media
+- Acting
 
-Assistant, Secretary, Operations Support, Coordination, Behind-the-scenes Business, Crypto, Strategy
+## Ideal Roles
+- Crypto Trader
+- Influencer
+- Content Creator
+- UX Designer
+- Digital Brand Strategist
 
-## Work Environment
-You pick up qualities from those around you. Being around high performers boosts you while negative settings drag you down.
+## Workplace Needs
+- Autonomy
+- Image-driven work
+- Trend-savvy teams
+- Access to strong mentors
+- Creative freedom
 
-## Challenges
-Ego and addictive personality. Do not let your self-image grow larger than your purpose or fall into negative habits.`,
+## Career Traps
+Avoid leadership roles under pressure, high-accountability decision-making, chaotic or toxic teams, and environments lacking strong influence to follow. Protect your energy by defining your role early.
+
+## Expert Advice
+Your success mirrors your surroundings — curate them. You were made to adapt, not lead. Online spaces let you shape-shift safely. Don't chase identity — design it intentionally.`,
 
     11: `# 💼 11 Life Path — Careers
 
-## Professional Strengths
-Inspiration, Intuition, Charisma, Vision
+## Profile Overview
+Your core energy is charismatic, emotionally charged, and spiritually electric. Built to inspire and transform others through visionary ideas and deep emotional resonance.
 
-## Ideal Career Paths
-11 lifepaths need passion or they crash. You will not reach your potential doing work you do not care about. When you believe in something, you outperform everyone, but you also struggle when your boss is weak.
+## Top Career Fields
+- Influencer
+- Motivation and Coaching
+- Healing Arts
+- Creative Expression
+- Public Speaking
 
-Athlete, Actor, Influencer, Author, Consulting, Coaching, Design, Creative Direction
+## Ideal Roles
+- Motivational Speaker
+- Healer
+- Life Coach
+- Artist
+- Spiritual Guide
 
-## Work Environment
-A main job plus side hustles is usually the winning formula. You need to keep things fresh and switch between tasks frequently.
+## Workplace Needs
+- Emotional expression
+- Creative and spiritual outlets
+- Platforms for influence
+- Connection to meaning
+- Grounded, stable collaborators
 
-## Challenges
-Finishing what you start. Bright ideas come easily but require focus and discipline to reach their full potential.`,
+## Career Traps
+Avoid overly technical roles, emotionally disconnected workplaces, environments that suppress passion or intuition, and repetitive jobs. Protect your energy by defining your role early.
+
+## Expert Advice
+Your energy is intense — learn to channel it, not explode from it. Inspire, don't overwhelm. Partner with people who can ground you. You're not here to fit in — you're here to light the way.`,
 
     22: `# 💼 22 Life Path — Careers
 
-## Professional Strengths
-Vision, Legacy Building, Strategy, Manifestation
+## Profile Overview
+Your core energy is strategic, intense, and built for impact. Designed to turn global-scale visions into grounded, functional realities. Thrives in environments where structure, influence, and execution meet.
 
-## Ideal Career Paths
-22 lifepaths are master builders. You are here to build something real, something that lasts, and you naturally upgrade people and businesses around you. The best path is building your own company, brand, or system.
+## Top Career Fields
+- Architecture
+- Systems Design
+- High-Level Engineering
+- Military Command
+- Political Strategy
 
-Architect, Engineer, Construction, Strategist, Financial Institutions, Personal Trainer, Business Building
+## Ideal Roles
+- Architect
+- General
+- Founder of Mission-Based Org
+- Inventor
+- Strategic Executive
 
-## Work Environment
-You are a master strategist who turns chaos into structure. You are often better at building up others than you are for yourself.
+## Workplace Needs
+- Strategic autonomy
+- Big-picture vision
+- Resources and authority
+- Power-based influence
+- Tangible, scalable projects
 
-## Challenges
-Spending years building someone else's dream. Be sure the results of your hard work stay with you and your legacy.`,
+## Career Traps
+Avoid small-scale or short-term roles, emotion-based leadership, environments with no room for growth, and creative-only paths without execution. Protect your energy by defining your role early.
+
+## Expert Advice
+You were built to shape the world — don't waste time thinking small. Structure is your art form — master it. The world tests you hardest because it expects the most. Power isn't the goal — building something eternal is.`,
 
     28: `# 💼 28 Life Path — Careers
 
-## Professional Strengths
-Strategy, Financial Magnetism, Authority, Precision
+## Profile Overview
+Your core energy is a money magnet with leadership instincts. Designed to attract wealth through ambition, risk, and self-determination. Carries karmic lessons around self-worth, relationships, and responsibility.
 
-## Ideal Career Paths
-28 lifepaths work best when money, power, or high stakes are involved. You are built for pressure and responsibility and usually perform better when outcomes matter. Passive roles or capped income drain you.
+## Top Career Fields
+- Entrepreneurship
+- Finance and Investment
+- High-Stakes Sales
+- Wealth Building Platforms
+- Crypto Launches
 
-Business Owner, Entrepreneur, Finance, Sales, Real Estate, Negotiation, Leadership, High Stakes Work
+## Ideal Roles
+- Crypto Founder
+- Wealth Coach
+- Startup CEO
+- Investor
+- Brand Leader
 
-## Work Environment
-You move with strategy and build through decisive action. You naturally pull money and opportunity into your orbit through precision.
+## Workplace Needs
+- Financial upside
+- Personal control
+- High performance rewards
+- Strong boundaries
+- Opportunities for empire-building
 
-## Challenges
-Wasted time and emotional distance. Your ambition can isolate you if you do not maintain personal balance.`,
+## Career Traps
+Avoid toxic power dynamics, partnerships without mutual respect, undervalued roles, and environments that suppress financial ambition. Protect your energy by defining your role early.
+
+## Expert Advice
+Money will come — but it will cost you lessons. Don't sell your soul chasing someone else's bag. Your leadership must be ethical or it will crumble. 28 energy brings wealth — use it to build, not dominate.`,
 
     33: `# 💼 33 Life Path — Careers
 
-## Professional Strengths
-Influence, Teaching, Visionary Leadership, Trailblazing
+## Profile Overview
+Your core energy is purpose-driven, high-capacity, and spiritually evolved. Built to uplift, guide, and heal through service and visibility. Thrives in roles that blend compassion with large-scale impact.
 
-## Ideal Career Paths
-33 lifepaths do best when their work impacts people. You are not built to live a small life or just clock in and clock out. When you commit to a mission, your presence elevates everything around you.
+## Top Career Fields
+- Public Speaking
+- Education Reform
+- Healing Professions
+- Creative Therapy
+- Advocacy and Activism
 
-Teacher, Planner, Strategist, Visionary, Influencer, Community Leader, Purpose-driven Entrepreneur
+## Ideal Roles
+- Coach
+- Educational Reformer
+- Creative Therapist
+- Healer
+- Public Advocate
 
-## Work Environment
-You have limitless potential to change the world. Your power is in influence, and wherever you direct your attention, others follow.
+## Workplace Needs
+- Heart-centered mission
+- Stage or platform for influence
+- Emotional fulfillment
+- Intellectual and spiritual stimulation
+- Long-term impact
 
-## Challenges
-Tough challenges and pushback from the masses. Being three steps ahead can leave you feeling misunderstood by those you lead.`
+## Career Traps
+Avoid tiny-scale roles, jobs that limit voice or vision, environments that mute compassion, and work without transformational purpose. Protect your energy by defining your role early.
+
+## Expert Advice
+You're here to lead with love — and that takes strength. Use your voice to elevate, not just instruct. You're not just a teacher — you're a soul-level transformer. This life is your final test — make it count.`
   },
 
   personalYear: {
-    1: `# 🗓️ Personal Year 1
-A year of new beginnings and fresh starts. Plant seeds for long-term projects. Independence, leadership, and initiative are the dominant themes. What you begin now sets the tone for the next 9-year cycle.
+    1: `# Year 1 — New Beginnings & Initiative
 
-Focus on yourself. Make bold moves. Avoid relying too heavily on others — this is the year to trust your own instincts and act on them. The energy favors those who step forward rather than wait.
+A year of independence and fresh starts. Set direction, build momentum, and lay the groundwork for long term success.
 
-## Focus On
-- Starting something new
-- Taking the lead in your own life
-- Building confidence and independence
+## Key Opportunities
+- Launch new projects
+- Take leadership roles
+- Make decisive moves
+- Upgrade skills or career path
 
-## Avoid
-- Hesitation and second-guessing
-- Over-relying on others for direction
-- Clinging to what the last cycle built`,
+## Watch Out
+Impatience, ego, or isolation can slow progress. Avoid rushing or acting without strategy.
+
+## Guidance
+Lead with clarity, take calculated risks, and use this year to establish a strong foundation for the future.`,
 
     2: `# 🗓️ Personal Year 2
 A year of patience, partnership, and heightened sensitivity. Focus on relationships, diplomacy, and cooperation. Things move slowly and that is by design — this is a year to refine and connect, not to rush.
@@ -2016,154 +2220,180 @@ Collaboration opens doors that individual effort cannot. Pay attention to the su
 - Reacting to situations before they fully develop
 - Neglecting your emotional needs`,
 
-    3: `# 🗓️ Personal Year 3
-A year of creativity, communication, and social expansion. Express yourself freely and put ideas into the world. Travel, new connections, and creative projects thrive in a 3 year.
+    3: `# Year 3 — Communication & Creativity
 
-This is a lighter, more joyful energy after the slower rhythm of the 2. Share what you know, connect with new people, and allow yourself to enjoy the process. The risk is scattering energy across too many directions.
+A year of expression, connection, and creative growth. Expand socially, share ideas, and increase visibility.
 
-## Focus On
-- Creative projects and self-expression
-- Social connections and networking
-- Communication in all forms
+## Key Opportunities
+- Develop creative skills
+- Strengthen communication
+- Expand your network
+- Promote ideas or projects
 
-## Avoid
-- Overcommitting to too many things at once
-- Neglecting depth in favor of entertainment
-- Ignoring practical responsibilities`,
+## Watch Out
+Scattered focus, emotional swings, or shallow ties can weaken results. Avoid distraction and overspending energy.
 
-    4: `# 🗓️ Personal Year 4
-A year of work, structure, and foundation building. Efforts put in now create lasting results. It is a grounding year — slow, steady, and demanding. Discipline pays off and shortcuts backfire.
+## Guidance
+Channel creativity with structure, build meaningful connections, and use visibility to create lasting opportunity.`,
 
-Do not expect rapid movement. The 4 year rewards those who show up consistently, lay careful groundwork, and resist the urge to take the easy path. What you build this year is meant to last.
+    4: `# Year 4 — Work & Structure
 
-## Focus On
-- Discipline and consistent effort
-- Building systems and structure
-- Long-term investments of time and energy
+A year of discipline, organization, and long term planning. Build stability through focused effort and practical action.
 
-## Avoid
-- Shortcuts and quick fixes
-- Ignoring health or financial foundations
-- Resistance to hard work`,
+## Key Opportunities
+- Strengthen financial stability
+- Create efficient systems
+- Develop practical expertise
+- Commit to consistent routines
 
-    5: `# 🗓️ Personal Year 5
-A year of change, freedom, and unexpected movement. Life shifts this year and resistance only creates friction. Travel, new people, and new experiences are all strongly favored.
+## Watch Out
+Overwork, frustration, or rigid thinking can block progress. Avoid burnout and stay flexible when needed.
 
-Adaptability is your greatest asset. Plans made in a 5 year often get rerouted — this is not failure, it is course correction. Stay flexible and lean into the unexpected rather than fighting it.
+## Guidance
+Focus on steady execution, solve structural gaps, and use discipline to create lasting security.`,
 
-## Focus On
-- Embracing change and new experiences
-- Travel and expansion
-- Flexibility and adaptability
+    5: `# Year 5 — Freedom & Change
 
-## Avoid
-- Forcing rigid plans or outcomes
-- Holding too tightly to what was
-- Reckless impulsiveness (change does not mean chaos)`,
+A year of movement, exploration, and personal expansion. Break routines, seek new experiences, and adapt quickly.
 
-    6: `# 🗓️ Personal Year 6
-A year of responsibility, home, and relationships. Family matters come to the forefront and commitments deepen. This is a nurturing year — invest in the people and environments that matter most.
+## Key Opportunities
+- Pursue travel or relocation
+- Try new roles or ventures
+- Expand social connections
+- Break limiting patterns
 
-Love, service, and community are the defining themes. Decisions about home, relationships, and long-term commitments made this year carry significant weight. Guard against over-giving at the expense of your own needs.
+## Watch Out
+Restlessness, impulsive choices, or excess can create instability. Avoid reckless risks and scattered focus.
 
-## Focus On
-- Family, home, and close relationships
-- Service and community
-- Deepening long-term commitments
+## Guidance
+Stay adaptable but disciplined. Use change strategically to expand your life without losing direction.`,
 
-## Avoid
-- Taking on others' burdens at the cost of your own wellbeing
-- Neglecting yourself while caring for others
-- Avoiding necessary relationship conversations`,
+    6: `# Year 6 — Family & Responsibility
 
-    7: `# 🗓️ Personal Year 7
-A year of reflection, study, and inner development. Pull back from external noise and invest in knowledge, spiritual growth, and self-understanding. This is not a year for forced external action.
+A year of home, commitment, and emotional grounding. Strengthen relationships and create stability in your personal life.
 
-The 7 year often feels quiet or even isolating — this is intentional. Trust what is developing beneath the surface. Solitude is productive. Research, study, and introspection now build the foundation for significant external movement in the year that follows.
+## Key Opportunities
+- Strengthen family bonds
+- Improve home environment
+- Take on key responsibilities
+- Support long term commitments
 
-## Focus On
-- Study, research, and self-knowledge
-- Spiritual or philosophical development
-- Rest and inner reflection
+## Watch Out
+Overcommitment or emotional burnout can create strain. Avoid neglecting your own needs while caring for others.
 
-## Avoid
-- Forcing external results before they are ready
-- Overextending socially when solitude is calling
-- Ignoring intuition in favor of logic alone`,
+## Guidance
+Prioritize harmony, set healthy boundaries, and build lasting stability at home and in close relationships.`,
 
-    8: `# 🗓️ Personal Year 8
-A year of power, ambition, and financial movement. Career and money are the primary focus. What you have built over the last 7 years comes up for harvest — take strategic action and pursue opportunities with confidence.
+    7: `# Year 7 — Reflection & Study
 
-This is a year of karmic financial balance. What you have invested in ethically comes back multiplied. What has been built on shortcuts or dishonesty may also come to account. Operate with integrity and full commitment.
+A year of solitude, analysis, and inner growth. Step back, learn deeply, and refine your direction.
 
-## Focus On
-- Career advancement and financial strategy
-- Authority and leadership
-- Long-term wealth building
+## Key Opportunities
+- Focus on study or research
+- Develop specialized skills
+- Strengthen intuition
+- Spend intentional time alone
 
-## Avoid
-- Short-term thinking in financial matters
-- Arrogance in positions of power
-- Neglecting relationships for ambition`,
+## Watch Out
+Isolation, financial missteps, or minor health issues can arise. Avoid risky decisions and overthinking.
 
-    9: `# 🗓️ Personal Year 9
-A year of completion, release, and endings. Clear out what no longer serves and prepare for the new cycle that begins in the 1 year. This is not the year to start new long-term commitments — it is the year to close chapters.
+## Guidance
+Use solitude productively, protect your resources, and build intellectual and practical strength for the next phase.`,
 
-Forgiveness, letting go, and gratitude are the central themes. Resisting the energy of closure this year creates drag that follows you into the next cycle. Trust the endings. Something better is ready to begin.
+    8: `# Year 8 — Money & Power
 
-## Focus On
-- Completing and closing long-standing projects or relationships
-- Forgiveness and emotional release
-- Gratitude for the full cycle
+A year of ambition, financial focus, and personal authority. Build wealth, strengthen control, and pursue measurable success.
 
-## Avoid
-- Starting major new long-term ventures
-- Holding onto what has clearly run its course
-- Allowing endings to become sources of bitterness`,
+## Key Opportunities
+- Pursue major financial goals
+- Expand business or career influence
+- Take executive leadership roles
+- Strengthen financial discipline
 
-    11: `# 🗓️ Personal Year 11
-A master number year — 11 is the number of the guide and the visionary. This is a powerful year to start or release something you want to be influential. When 11 energy is channeled well, it creates work and connections that inspire others.
+## Watch Out
+Financial swings, ego conflicts, or karmic consequences may test judgment. Avoid reckless risks or power struggles.
 
-Emotionality is heightened in an 11 year. You may find yourself more sensitive, more reactive, or more tuned in than usual. Be discerning about how you interpret events — not everything that feels significant is. Ground yourself regularly and direct your heightened perception toward creation rather than anxiety.
+## Guidance
+Act strategically, manage resources wisely, and build success with integrity to secure long term stability.`,
 
-## Focus On
-- Visionary projects and influential work
-- Intuition and spiritual development
-- Sharing your gifts with a wider audience
+    9: `# Year 9 — Completion & Release
 
-## Avoid
-- Getting lost in emotional overwhelm
-- Misreading situations through heightened sensitivity
-- Shrinking from visibility out of fear`,
+A year of closure, reflection, and transition. Finish cycles, release what no longer fits, and prepare for renewal.
 
-    22: `# 🗓️ Personal Year 22
-A master number year — 22 is the number of the master builder. This is a year of large-scale vision and the genuine potential to build something that matters. The work required is intense but what is created can last a generation.
+## Key Opportunities
+- Complete unfinished projects
+- End outdated commitments
+- Reflect on key life lessons
+- Clear emotional or practical baggage
 
-Do not shrink from the scale of what this year is asking of you. The 22 year demands structure, discipline, and courage. It rewards those who think big and execute with precision. This is not a year for small plans.
+## Watch Out
+Emotional resistance or ego attachment can delay progress. Avoid forcing new long term ventures during transition.
 
-## Focus On
-- Large-scale building and long-term legacy
-- Disciplined execution of ambitious visions
-- Collaborating with others who match your standard
+## Guidance
+Accept endings strategically, adapt with maturity, and create clean space for the next chapter.`,
 
-## Avoid
-- Playing small out of fear of what building big requires
-- Cutting corners on important foundations
-- Allowing perfectionism to prevent action`,
+    11: `# Year 11 — Vision & Influence
 
-    33: `# 🗓️ Personal Year 33
-A master number year — 33 is the number of the master teacher. This is a year of service, influence, and purpose. Your role this year is to contribute at a high level and elevate those around you through what you share.
+A year of heightened intuition, emotional intensity, and visionary expansion. Step into influence and elevate your impact.
 
-The 33 year can feel weighty — the sense of responsibility is real. But leading with love and genuine care for others rather than personal recognition keeps the energy clean. This is a year where your presence matters, and your choices ripple outward significantly.
+## Key Opportunities
+- Share bold ideas publicly
+- Lead through inspiration
+- Develop spiritual or intuitive gifts
+- Expand influence through communication
 
-## Focus On
-- Teaching, mentoring, and service
-- Purpose-driven work that impacts others
-- Leading with compassion and integrity
+## Watch Out
+Emotional extremes or self-doubt can create instability. Avoid burnout and dramatic decisions during highs or lows.
 
-## Avoid
-- Seeking recognition over genuine contribution
-- Taking on more responsibility than you can sustain
-- Ignoring your own needs in service of others`
+## Guidance
+Stay grounded, trust your insight, and channel charisma strategically to create meaningful long-term change.`,
+
+    22: `# Year 22 — Master Builder
+
+A rare year of large scale potential. Build strong foundations, execute big plans, and turn vision into tangible results.
+
+## Key Opportunities
+- Launch major long term projects
+- Build scalable systems
+- Secure financial foundations
+- Lead high impact initiatives
+
+## Watch Out
+Overwhelm, perfectionism, or misuse of power can cause setbacks. Avoid reckless expansion or destructive decisions.
+
+## Guidance
+Think long term, act with discipline, and channel ambition into building structures that create lasting legacy.`,
+
+    28: `# Year 28 — Wealth & Authority
+
+A year of financial expansion, strategic power, and high level opportunity. Build assets, scale influence, and position for long term gain.
+
+## Key Opportunities
+- Launch or scale a business
+- Increase income streams
+- Strengthen financial systems
+- Step into executive leadership
+
+## Watch Out
+Reckless investments or ego driven decisions can create losses. Avoid overleveraging or chasing fast money.
+
+## Guidance
+Think like an owner, act strategically, and use disciplined execution to build lasting wealth and authority.`,
+
+    33: `# Year 33 — Master Teacher
+
+A rare year of influence, compassion, and lasting impact. Lead through service and guide others with emotional intelligence.
+
+## Key Opportunities
+- Teach or mentor others
+- Lead service based initiatives
+- Strengthen emotional intelligence
+- Create meaningful community impact
+
+## Watch Out
+Emotional burnout or overcommitment can drain energy. Avoid neglecting personal needs while serving others.
+
+## Guidance
+Lead with compassion and discipline, balance service with self care, and build a legacy rooted in meaningful contribution.`
   }
 };

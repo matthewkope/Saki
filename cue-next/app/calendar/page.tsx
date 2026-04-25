@@ -1,7 +1,11 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect, useMemo } from 'react';
 import { calcLP, calcSLP } from '@/lib/numerology';
+import { calcScore, getScoreRelation } from '@/lib/compatibility';
+import { supabase } from '@/lib/supabase';
+import { useAuth } from '@/components/AuthProvider';
+import { useIntermediaryNumbers, fmtLP, fmtLPStr } from '@/lib/useIntermediaryNumbers';
 
 // ============================================================
 // CONSTANTS
@@ -31,11 +35,17 @@ function isMasterLP(lp: number): boolean {
 // TYPES
 // ============================================================
 interface SelDate { day: number; month: number; year: number; }
+interface PersonDate { month: number; day: number; year: number; }
+
+function formatShortDateLabel(date: Date): string {
+  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
 
 // ============================================================
 // COMPONENT
 // ============================================================
 export default function CalendarPage() {
+  const { session, loading: authLoading } = useAuth();
   const now = new Date();
   const todayDay = now.getDate();
   const todayMonth = now.getMonth() + 1;
@@ -45,6 +55,30 @@ export default function CalendarPage() {
   const [viewMonth, setViewMonth] = useState(todayMonth);
   const [showNumerology, setShowNumerology] = useState(true);
   const [sel, setSel] = useState<SelDate>({ day: todayDay, month: todayMonth, year: todayYear });
+  const [userBirth, setUserBirth] = useState<PersonDate | null>(null);
+  const [showIntermediary] = useIntermediaryNumbers();
+
+  useEffect(() => {
+    if (authLoading) return;
+    if (!session) {
+      setUserBirth(null);
+      return;
+    }
+    supabase
+      .from('profiles')
+      .select('birth_month, birth_day, birth_year')
+      .eq('id', session.user.id)
+      .single()
+      .then(({ data }) => {
+        if (data?.birth_month && data?.birth_day && data?.birth_year) {
+          setUserBirth({
+            month: data.birth_month,
+            day: data.birth_day,
+            year: data.birth_year,
+          });
+        }
+      });
+  }, [session, authLoading]);
 
   const prevMonth = useCallback(() => {
     setViewMonth((m) => {
@@ -78,6 +112,31 @@ export default function CalendarPage() {
   const selDow = DAY_NAMES[new Date(sel.year, sel.month - 1, sel.day).getDay()];
   const selIsToday = sel.day === todayDay && sel.month === todayMonth && sel.year === todayYear;
   const selLpColor = selIsToday ? 'accent' : selMaster ? 'gold' : 'accent';
+  const forecast = useMemo(() => {
+    if (!userBirth) return [];
+
+    return Array.from({ length: 7 }, (_, offset) => {
+      const date = new Date(sel.year, sel.month - 1, sel.day + offset);
+      const calendarDate = {
+        month: date.getMonth() + 1,
+        day: date.getDate(),
+        year: date.getFullYear(),
+      };
+      const result = calcScore(userBirth, calendarDate);
+      const relation = getScoreRelation(result.score);
+
+      return {
+        key: date.toISOString(),
+        label: offset === 0 ? 'Selected Day' : `Day ${offset + 1}`,
+        shortDate: formatShortDateLabel(date),
+        dow: DAY_NAMES[date.getDay()],
+        relation,
+        score: Math.round(result.score),
+        lpDisplay: result.lp2.display,
+        slp: result.slp2,
+      };
+    });
+  }, [sel.day, sel.month, sel.year, userBirth]);
 
   return (
     <div className="page">
@@ -153,7 +212,7 @@ export default function CalendarPage() {
                       {moon && <span className="cell-moon">🌕</span>}
                     </span>
                   </div>
-                  <div className="cell-lp">{display}</div>
+                  <div className="cell-lp">{fmtLP(lp, display, showIntermediary)}</div>
                   <div className="cell-slp">SLP <span>{String(slp)}</span></div>
                 </>
               ) : (
@@ -214,13 +273,45 @@ export default function CalendarPage() {
         <div className="detail-rows">
           <div className="detail-row">
             <span className="detail-key">Universal Day LP</span>
-            <span className={`detail-val ${selLpColor}`}>{selDisplay}</span>
+            <span className={`detail-val ${selLpColor}`}>{fmtLP(selLp, selDisplay, showIntermediary)}</span>
           </div>
           <div className="detail-row">
             <span className="detail-key">Secondary LP</span>
             <span className="detail-val teal">{selSlp}</span>
           </div>
         </div>
+      </div>
+
+      <div className="date-detail forecast-detail">
+        <div className="detail-header forecast-header">
+          <div>
+            <span className="detail-date-label">Compatibility Forecast</span>
+            <div className="forecast-subtitle">
+              7-day outlook using your profile birthday first and the calendar date second.
+            </div>
+          </div>
+        </div>
+        {!userBirth ? (
+          <div className="forecast-empty">
+            Add your birthday in Profile to unlock this compatibility forecast.
+          </div>
+        ) : (
+          <div className="forecast-list">
+            {forecast.map((item) => (
+              <div key={item.key} className="forecast-row">
+                <div className="forecast-day">
+                  <div className="forecast-label">{item.label}</div>
+                  <div className="forecast-date">{item.dow}, {item.shortDate}</div>
+                </div>
+                <div className="forecast-meta">
+                  <div className={`forecast-pill ${item.relation}`}>{item.relation}</div>
+                  <div className="forecast-score">{item.score}%</div>
+                  <div className="forecast-numbers">LP {fmtLPStr(item.lpDisplay, showIntermediary)} · SLP {item.slp}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

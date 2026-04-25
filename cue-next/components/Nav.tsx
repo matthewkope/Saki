@@ -32,7 +32,7 @@ export default function Nav() {
 
         {/* Auth slot */}
         {!loading && (
-          <div style={{ display: 'flex', alignItems: 'center', paddingLeft: '12px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', paddingLeft: '12px', flexShrink: 0 }}>
             {session ? (
               <Link href="/profile" style={{ textDecoration: 'none' }}>
                 <div style={{

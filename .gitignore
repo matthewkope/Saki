@@ -1,5 +1,6 @@
 node_modules/
 .next/
+.vercel/
 .env
 .env.*
 .DS_Store
@@ -16,9 +17,13 @@ __pycache__/
 traffic.mitm
 all_raw_json_dumps.json
 
-# Intercepted Unnamed Data 
+# Intercepted Unnamed Data
 new folder/
+Untitled/
 intercepted_data/
+
+# Browser Extension Environment (contains secrets)
+fb-compatibility-extension/env.config.js
 
 # Mac OS
 .DS_Store

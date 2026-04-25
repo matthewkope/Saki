@@ -8,6 +8,7 @@ import { calculate } from '@/lib/letterology';
 import type { CalcResult } from '@/lib/letterology';
 import { calcLP, calcSLP, calcPersonalYear, calcPersonalMonth, calcLuckyNumber, digitSum } from '@/lib/numerology';
 import { getEasternAnimal, getWesternSign } from '@/lib/astrology';
+import { useIntermediaryNumbers, fmtLPStr } from '@/lib/useIntermediaryNumbers';
 
 interface Profile {
   name: string | null;
@@ -96,6 +97,7 @@ export default function ProfilePage() {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [fetching, setFetching] = useState(true);
   const [savedItems, setSavedItems] = useState<SavedItem[]>([]);
+  const [showIntermediary, setShowIntermediary] = useIntermediaryNumbers();
 
   // Edit states
   const [editName, setEditName] = useState(false);
@@ -226,11 +228,11 @@ export default function ProfilePage() {
             {profile.birth_month && <div style={{ color: 'var(--text-dim)', fontSize: '0.9rem', marginBottom: '12px' }}>{profile.birth_month}/{profile.birth_day}/{profile.birth_year}</div>}
             {profile.reading_bday && (
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-                <Chip label="Life Path" value={profile.reading_bday.lpDisplay} color="var(--accent)" />
+                <Chip label="Life Path" value={fmtLPStr(profile.reading_bday.lpDisplay, showIntermediary)} color="var(--accent)" />
                 <Chip label="Sub LP" value={String(profile.reading_bday.slp)} color="var(--accent-dim)" />
                 <Chip label="Eastern" value={profile.reading_bday.animal} color="var(--gold)" />
                 <Chip label="Western" value={profile.reading_bday.sign} color="#a78bfa" />
-                <Chip label="PY" value={profile.reading_bday.pyDisplay} color="var(--teal)" />
+                <Chip label="PY" value={fmtLPStr(profile.reading_bday.pyDisplay, showIntermediary)} color="var(--teal)" />
                 {(() => {
                   if (!profile.birth_month || !profile.birth_day) return null;
                   const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -339,6 +341,37 @@ export default function ProfilePage() {
           <li>Click <strong style={{ color: 'var(--text)' }}>Load unpacked</strong> and select the downloaded folder</li>
           <li>The Cue icon will appear in your toolbar — pin it for easy access</li>
         </ol>
+      </div>
+
+      {/* Settings */}
+      <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '18px', padding: '24px', marginBottom: '16px' }}>
+        <span style={{ fontFamily: "'Instrument Serif', serif", fontSize: '1.1rem', color: 'var(--text)', display: 'block', marginBottom: '16px' }}>Settings</span>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div>
+            <div style={{ fontSize: '0.88rem', color: 'var(--text)', fontWeight: 500 }}>Intermediary Numbers</div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '2px' }}>Show raw sums alongside final life path numbers</div>
+          </div>
+          <button
+            onClick={() => setShowIntermediary(!showIntermediary)}
+            style={{
+              padding: '5px 18px',
+              borderRadius: '20px',
+              fontSize: '0.72rem',
+              fontWeight: 700,
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              cursor: 'pointer',
+              transition: 'all 0.15s',
+              border: `1px solid ${showIntermediary ? 'var(--accent)' : 'var(--border-light)'}`,
+              background: showIntermediary ? 'rgba(196,160,255,0.15)' : 'transparent',
+              color: showIntermediary ? 'var(--accent)' : 'var(--text-dim)',
+              flexShrink: 0,
+              marginLeft: '16px',
+            }}
+          >
+            {showIntermediary ? 'On' : 'Off'}
+          </button>
+        </div>
       </div>
 
       {/* Sign out */}

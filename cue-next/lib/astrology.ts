@@ -25,6 +25,10 @@ export const EAST_ANIMALS = [
 
 export type EastAnimal = typeof EAST_ANIMALS[number];
 
+export const EAST_ELEMENTS = ['Wood', 'Fire', 'Earth', 'Metal', 'Water'] as const;
+
+export type EastElement = typeof EAST_ELEMENTS[number];
+
 export const ANIMAL_EMOJI: Record<string, string> = {
   Rat: '🐭', Ox: '🐂', Tiger: '🐯', Cat: '🐱', Dragon: '🐉', Snake: '🐍',
   Horse: '🐴', Goat: '🐐', Monkey: '🐒', Rooster: '🐓', Dog: '🐕', Pig: '🐷',
@@ -36,25 +40,29 @@ export const WEST_EMOJI: Record<string, string> = {
 };
 
 export function getEasternAnimal(month: number, day: number, year: number): string {
-  let effectiveYear = year;
-  const lny = LUNAR_NY[year];
-  if (lny) {
-    const [lm, ld] = lny;
-    if (month < lm || (month === lm && day < ld)) effectiveYear = year - 1;
-  }
+  const effectiveYear = getEasternEffectiveYear(month, day, year);
   const idx = ((effectiveYear - 1924) % 12 + 12) % 12;
   return EAST_ANIMALS[idx];
 }
 
 export function getEasternAnimalWithIndex(month: number, day: number, year: number): { animal: string; index: number } {
-  let effectiveYear = year;
-  const lny = LUNAR_NY[year];
-  if (lny) {
-    const [lm, ld] = lny;
-    if (month < lm || (month === lm && day < ld)) effectiveYear = year - 1;
-  }
+  const effectiveYear = getEasternEffectiveYear(month, day, year);
   const idx = ((effectiveYear - 1924) % 12 + 12) % 12;
   return { animal: EAST_ANIMALS[idx], index: idx };
+}
+
+export function getEasternEffectiveYear(month: number, day: number, year: number): number {
+  const lny = LUNAR_NY[year];
+  if (!lny) return year;
+
+  const [lm, ld] = lny;
+  return month < lm || (month === lm && day < ld) ? year - 1 : year;
+}
+
+export function getEasternElement(month: number, day: number, year: number): string {
+  const effectiveYear = getEasternEffectiveYear(month, day, year);
+  const stemIndex = ((effectiveYear - 4) % 10 + 10) % 10;
+  return EAST_ELEMENTS[Math.floor(stemIndex / 2)];
 }
 
 export function getWesternSign(month: number, day: number): string {
